@@ -34,6 +34,8 @@ public class GEMSettings extends PreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "GEMSettings";
 
+    private static final String GENERAL_NOTIF_ADB = "display_adb_usb_debugging_notif";
+
     private static final String UI_COLOR_CLOCK = "color_clock";
     private static final String UI_COLOR_DATE = "color_date";
     private static final String UI_COLOR_LABEL_SPN = "color_label_spn";
@@ -53,6 +55,8 @@ public class GEMSettings extends PreferenceActivity
 
     private static final String UI_DISPLAY_STATUS_BAR_CLOCK = "display_status_bar_clock";
     private static final String UI_DISPLAY_BATTERY_PERCENTAGE = "display_battery_percentage";
+
+    private CheckBoxPreference mGeneralNotifADBPref;
 
     private Preference mColorClockPref;
     private Preference mColorDatePref;
@@ -81,6 +85,8 @@ public class GEMSettings extends PreferenceActivity
 
         final PreferenceScreen prefSet = getPreferenceScreen();
 
+        mGeneralNotifADBPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_NOTIF_ADB);
+
         mColorClockPref = prefSet.findPreference(UI_COLOR_CLOCK);
         mColorDatePref = prefSet.findPreference(UI_COLOR_DATE);
         mColorLabelSPNPref = prefSet.findPreference(UI_COLOR_LABEL_SPN);
@@ -105,6 +111,9 @@ public class GEMSettings extends PreferenceActivity
     }
 
     private void updateToggles() {
+        mGeneralNotifADBPref.setChecked(Settings.Secure.getInt(
+                getContentResolver(),
+                Settings.Secure.DISPLAY_ADB_USB_DEBUGGING_NOTIFICATION, 1) != 0);
         mDisplayStatusBarClockPref.setChecked(Settings.System.getInt(
                 getContentResolver(),
                 Settings.System.DISPLAY_STATUS_BAR_CLOCK, 1) != 0);
@@ -203,7 +212,11 @@ public class GEMSettings extends PreferenceActivity
     }
 
     public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
-        if (UI_DISPLAY_STATUS_BAR_CLOCK.equals(key)) {
+        if (GENERAL_NOTIF_ADB.equals(key)) {
+            Settings.Secure.putInt(getContentResolver(),
+                    Settings.Secure.DISPLAY_ADB_USB_DEBUGGING_NOTIFICATION,
+                    mGeneralNotifADBPref.isChecked() ? 1 : 0);
+        } else if (UI_DISPLAY_STATUS_BAR_CLOCK.equals(key)) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.DISPLAY_STATUS_BAR_CLOCK,
                     mDisplayStatusBarClockPref.isChecked() ? 1 : 0);

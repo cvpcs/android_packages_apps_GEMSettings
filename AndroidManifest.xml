@@ -17,6 +17,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="org.cvpcs.android.gem_settings">
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
     
     <application android:label="@string/app_label"
             android:icon="@drawable/app_icon">

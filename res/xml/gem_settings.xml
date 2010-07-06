@@ -19,6 +19,23 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
+        android:title="@string/title_general">
+ 
+        <PreferenceScreen
+            android:title="@string/title_general_notif"
+            android:summary="@string/summary_general_notif">
+
+            <CheckBoxPreference
+                android:key="display_adb_usb_debugging_notif"
+                android:title="@string/title_general_notif_display_adb_usb_debugging_notif"
+                android:summaryOn="@string/summary_on_general_notif_display_adb_usb_debugging_notif"
+                android:summaryOff="@string/summary_off_general_notif_display_adb_usb_debugging_notif" />
+
+        </PreferenceScreen>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:title="@string/title_ui_tweaks">
 
         <PreferenceScreen

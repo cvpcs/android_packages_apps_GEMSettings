@@ -20,40 +20,66 @@
 <resources>
     <string name="app_label">GEM Settings</string>
 
+    <!-- Section devoted to general user settings -->
+    <string name="title_general">General</string>
+
+        <string name="title_general_notif">Notifications</string>
+        <string name="summary_general_notif">Change how some notifications operate</string>
+
+            <string name="title_general_notif_display_adb_usb_debugging_notif">USB Debugging</string>
+            <string name="summary_on_general_notif_display_adb_usb_debugging_notif">The USB debugging notification will be displayed</string>
+            <string name="summary_off_general_notif_display_adb_usb_debugging_notif">The USB debugging notification will not be displayed</string>
+
     <!-- Section devoted to user interface tweaking -->
     <string name="title_ui_tweaks">User interface tweaks - Requires Reboot</string>
-    <string name="title_ui_tweaks_colors">Text colors</string>
-    <string name="summary_ui_tweaks_colors">Change various UI text colors</string>
 
-    <string name="title_ui_tweaks_colors_general">General</string>
-    <string name="summary_ui_tweaks_colors_general">Change various general colors</string>
-    <string name="title_ui_tweaks_colors_general_clock">Clock</string>
-    <string name="title_ui_tweaks_colors_general_date">Date</string>
-    <string name="title_ui_tweaks_colors_general_label_spn">Carrier SPN label</string>
-    <string name="title_ui_tweaks_colors_general_label_plmn">Carrier PLMN label</string>
-    <string name="title_ui_tweaks_colors_general_battery_percentage">Battery Percentage</string>
+        <string name="title_ui_tweaks_colors">Text colors</string>
+        <string name="summary_ui_tweaks_colors">Change various UI text colors</string>
 
-    <string name="title_ui_tweaks_colors_notification">Notifications</string>
-    <string name="summary_ui_tweaks_colors_notification">Change various notification colors</string>
-    <string name="title_ui_tweaks_colors_notification_ticker_text">Ticker text</string>
-    <string name="title_ui_tweaks_colors_notification_none">No notifications title</string>
-    <string name="title_ui_tweaks_colors_notification_latest">Latest notifications title</string>
-    <string name="title_ui_tweaks_colors_notification_ongoing">Ongoing notifications title</string>
-    <string name="title_ui_tweaks_colors_notification_clear_button">Clear button text</string>
-    <string name="title_ui_tweaks_colors_notification_item">Notification items</string>
-    <string name="title_ui_tweaks_colors_notification_item_title">Item title</string>
-    <string name="title_ui_tweaks_colors_notification_item_text">Item text</string>
-    <string name="title_ui_tweaks_colors_notification_item_progress_text">Item progress bar text</string>
-    <string name="title_ui_tweaks_colors_notification_item_time">Item time</string>
+            <string name="title_ui_tweaks_colors_general">General</string>
+            <string name="summary_ui_tweaks_colors_general">Change various general colors</string>
 
-    <string name="title_ui_tweaks_display">Show/hide</string>
-    <string name="summary_ui_tweaks_display">Enable or disable the drawing of various on-screen items</string>
+                <string name="title_ui_tweaks_colors_general_clock">Clock</string>
 
-    <string name="title_ui_tweaks_display_status_bar_clock">Status bar clock</string>
-    <string name="summary_on_ui_tweaks_display_status_bar_clock">Clock is displayed in the status bar</string>
-    <string name="summary_off_ui_tweaks_display_status_bar_clock">Clock is not displayed in the status bar</string>
+                <string name="title_ui_tweaks_colors_general_date">Date</string>
 
-    <string name="title_ui_tweaks_display_battery_percentage">Battery percentage</string>
-    <string name="summary_on_ui_tweaks_display_battery_percentage">Battery percentage is displayed over the battery icon</string>
-    <string name="summary_off_ui_tweaks_display_battery_percentage">Battery percentage is not displayed over the battery icon</string>
+                <string name="title_ui_tweaks_colors_general_label_spn">Carrier SPN label</string>
+
+                <string name="title_ui_tweaks_colors_general_label_plmn">Carrier PLMN label</string>
+
+                <string name="title_ui_tweaks_colors_general_battery_percentage">Battery Percentage</string>
+
+            <string name="title_ui_tweaks_colors_notification">Notifications</string>
+            <string name="summary_ui_tweaks_colors_notification">Change various notification colors</string>
+
+                <string name="title_ui_tweaks_colors_notification_ticker_text">Ticker text</string>
+
+                <string name="title_ui_tweaks_colors_notification_none">No notifications title</string>
+
+                <string name="title_ui_tweaks_colors_notification_latest">Latest notifications title</string>
+
+                <string name="title_ui_tweaks_colors_notification_ongoing">Ongoing notifications title</string>
+
+                <string name="title_ui_tweaks_colors_notification_clear_button">Clear button text</string>
+
+                <string name="title_ui_tweaks_colors_notification_item">Notification items</string>
+
+                    <string name="title_ui_tweaks_colors_notification_item_title">Item title</string>
+
+                    <string name="title_ui_tweaks_colors_notification_item_text">Item text</string>
+
+                    <string name="title_ui_tweaks_colors_notification_item_progress_text">Item progress bar text</string>
+
+                    <string name="title_ui_tweaks_colors_notification_item_time">Item time</string>
+
+            <string name="title_ui_tweaks_display">Show/hide</string>
+            <string name="summary_ui_tweaks_display">Enable or disable the drawing of various on-screen items</string>
+
+                <string name="title_ui_tweaks_display_status_bar_clock">Status bar clock</string>
+                <string name="summary_on_ui_tweaks_display_status_bar_clock">Clock is displayed in the status bar</string>
+                <string name="summary_off_ui_tweaks_display_status_bar_clock">Clock is not displayed in the status bar</string>
+
+                <string name="title_ui_tweaks_display_battery_percentage">Battery percentage</string>
+                <string name="summary_on_ui_tweaks_display_battery_percentage">Battery percentage is displayed over the battery icon</string>
+                <string name="summary_off_ui_tweaks_display_battery_percentage">Battery percentage is not displayed over the battery icon</string>
 </resources>
