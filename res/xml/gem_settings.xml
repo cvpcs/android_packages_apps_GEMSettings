@@ -31,6 +31,12 @@
                 android:summaryOn="@string/summary_on_general_notif_display_adb_usb_debugging_notif"
                 android:summaryOff="@string/summary_off_general_notif_display_adb_usb_debugging_notif" />
 
+            <CheckBoxPreference
+                android:key="display_notification_led_screen_on"
+                android:title="@string/title_general_notif_display_notification_led_screen_on"
+                android:summaryOn="@string/summary_on_general_notif_display_notification_led_screen_on"
+                android:summaryOff="@string/summary_off_general_notif_display_notification_led_screen_on" />
+
         </PreferenceScreen>
 
     </PreferenceCategory>

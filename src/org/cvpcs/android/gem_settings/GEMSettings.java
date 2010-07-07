@@ -35,6 +35,7 @@ public class GEMSettings extends PreferenceActivity
     private static final String TAG = "GEMSettings";
 
     private static final String GENERAL_NOTIF_ADB = "display_adb_usb_debugging_notif";
+    private static final String GENERAL_NOTIF_LED = "display_notification_led_screen_on";
 
     private static final String UI_COLOR_CLOCK = "color_clock";
     private static final String UI_COLOR_DATE = "color_date";
@@ -57,6 +58,7 @@ public class GEMSettings extends PreferenceActivity
     private static final String UI_DISPLAY_BATTERY_PERCENTAGE = "display_battery_percentage";
 
     private CheckBoxPreference mGeneralNotifADBPref;
+    private CheckBoxPreference mGeneralNotifLEDPref;
 
     private Preference mColorClockPref;
     private Preference mColorDatePref;
@@ -86,6 +88,7 @@ public class GEMSettings extends PreferenceActivity
         final PreferenceScreen prefSet = getPreferenceScreen();
 
         mGeneralNotifADBPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_NOTIF_ADB);
+        mGeneralNotifLEDPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_NOTIF_LED);
 
         mColorClockPref = prefSet.findPreference(UI_COLOR_CLOCK);
         mColorDatePref = prefSet.findPreference(UI_COLOR_DATE);
@@ -111,6 +114,9 @@ public class GEMSettings extends PreferenceActivity
     }
 
     private void updateToggles() {
+        mGeneralNotifLEDPref.setChecked(Settings.Secure.getInt(
+                getContentResolver(),
+                Settings.Secure.DISPLAY_NOTIFICATION_LED_SCREEN_ON, 0) != 0);
         mGeneralNotifADBPref.setChecked(Settings.Secure.getInt(
                 getContentResolver(),
                 Settings.Secure.DISPLAY_ADB_USB_DEBUGGING_NOTIFICATION, 1) != 0);
@@ -216,6 +222,10 @@ public class GEMSettings extends PreferenceActivity
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.DISPLAY_ADB_USB_DEBUGGING_NOTIFICATION,
                     mGeneralNotifADBPref.isChecked() ? 1 : 0);
+        } else if (GENERAL_NOTIF_LED.equals(key)) {
+            Settings.Secure.putInt(getContentResolver(),
+                    Settings.Secure.DISPLAY_NOTIFICATION_LED_SCREEN_ON,
+                    mGeneralNotifLEDPref.isChecked() ? 1 : 0);
         } else if (UI_DISPLAY_STATUS_BAR_CLOCK.equals(key)) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.DISPLAY_STATUS_BAR_CLOCK,
