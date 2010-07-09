@@ -157,7 +157,7 @@ public class GEMSettings extends PreferenceActivity
         else if (preference == mColorBatteryPercentagePref) {
             ColorPickerDialog cp = new ColorPickerDialog(this,
                     new ColorChangedListener(this, Settings.System.COLOR_BATTERY_PERCENTAGE),
-                    readColor(Settings.System.COLOR_BATTERY_PERCENTAGE, -16777216));
+                    readColor(Settings.System.COLOR_BATTERY_PERCENTAGE, -1));
             cp.show();
         }
         else if (preference == mColorNotificationTickerTextPref) {

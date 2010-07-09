@@ -70,7 +70,7 @@
 
                 <Preference android:key="color_battery_percentage"
                     android:title="@string/title_ui_tweaks_colors_general_battery_percentage"
-                    android:defaultValue="-16777216" />
+                    android:defaultValue="-1" />
 
             </PreferenceScreen>
 
