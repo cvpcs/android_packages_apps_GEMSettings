@@ -16,7 +16,8 @@
  * limitations under the License.
  */
 -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:cvpcs="http://schemas.cvpcs.org/apk/res/android">
 
     <PreferenceCategory
         android:title="@string/title_general">
@@ -38,15 +39,17 @@
                 android:summaryOff="@string/summary_off_general_notif_display_notification_led_screen_on" />
 
         </PreferenceScreen>
-<!--
-        <ListPreference
+
+        <org.cvpcs.android.gem_settings.SeekBarPreference
             android:key="auto_brightness_minimum_backlight_level"
             android:title="@string/title_general_auto_brightness_minimum_backlight_level"
             android:summary="@string/summary_general_auto_brightness_minimum_backlight_level"
-            android:entries="@array/entries_auto_brightness_minimum_backlight_level"
-            android:entryValues="@array/entryvalues_auto_brightness_minimum_backlight_level"
-            android:dialogTitle="@string/dialog_title_general_auto_brightness_minimum_backlight_level" />
--->
+            cvpcs:dialogMessage="@string/dialog_message_general_auto_brightness_minimum_backlight_level"
+            cvpcs:prefixText="@string/prefix_text_general_auto_brightness_minimum_backlight_level"
+            cvpcs:defaultValue="16"
+            cvpcs:min="2"
+            cvpcs:max="16" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

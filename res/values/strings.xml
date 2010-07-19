@@ -34,6 +34,11 @@
             <string name="summary_on_general_notif_display_notification_led_screen_on">Notification LED will blink while the screen is on</string>
             <string name="summary_off_general_notif_display_notification_led_screen_on">Notification LED will not blink while the screen is on</string>
 
+        <string name="title_general_auto_brightness_minimum_backlight_level">Auto-brightness minimum level</string>
+        <string name="summary_general_auto_brightness_minimum_backlight_level">Set the lowest backlight level for auto-brightness mode</string>
+        <string name="dialog_message_general_auto_brightness_minimum_backlight_level">Auto-brightness minimum</string>
+        <string name="prefix_text_general_auto_brightness_minimum_backlight_level">Level </string>
+
     <!-- Section devoted to runnable services -->
     <string name="title_services">Services</string>
 

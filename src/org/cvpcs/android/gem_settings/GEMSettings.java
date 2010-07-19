@@ -39,6 +39,8 @@ public class GEMSettings extends PreferenceActivity
     private static final String GENERAL_NOTIF_ADB = "display_adb_usb_debugging_notif";
     private static final String GENERAL_NOTIF_LED = "display_notification_led_screen_on";
 
+    private static final String GENERAL_AUTO_BRIGHT_MIN_LEVEL = "auto_brightness_minimum_backlight_level";
+
     private static final String SERVICE_COMPCACHE = "compcache";
     private static final String SERVICE_COMPCACHE_PROPERTY = "persist.cvpcs.service.compcache";
 
@@ -64,6 +66,8 @@ public class GEMSettings extends PreferenceActivity
 
     private CheckBoxPreference mGeneralNotifADBPref;
     private CheckBoxPreference mGeneralNotifLEDPref;
+
+    private SeekBarPreference mGeneralAutoBrightMinLevelPref;
 
     private CheckBoxPreference mServiceCompcachePref;
 
@@ -98,6 +102,8 @@ public class GEMSettings extends PreferenceActivity
 
         mGeneralNotifADBPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_NOTIF_ADB);
         mGeneralNotifLEDPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_NOTIF_LED);
+
+        mGeneralAutoBrightMinLevelPref = (SeekBarPreference)prefSet.findPreference(GENERAL_AUTO_BRIGHT_MIN_LEVEL);
 
         mServiceCompcachePref = (CheckBoxPreference)prefSet.findPreference(SERVICE_COMPCACHE);
         if(!isSwapAvailable()) {
@@ -230,6 +236,10 @@ public class GEMSettings extends PreferenceActivity
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.DISPLAY_NOTIFICATION_LED_SCREEN_ON,
                     mGeneralNotifLEDPref.isChecked() ? 1 : 0);
+        } else if (GENERAL_AUTO_BRIGHT_MIN_LEVEL.equals(key)) {
+            Settings.Secure.putInt(getContentResolver(),
+                    Settings.Secure.AUTO_BRIGHTNESS_MINIMUM_BACKLIGHT_LEVEL,
+                    mGeneralAutoBrightMinLevelPref.getValue());
         } else if (SERVICE_COMPCACHE.equals(key)) {
             SystemProperties.set(SERVICE_COMPCACHE_PROPERTY,
                     mServiceCompcachePref.isChecked() ? "1" : "0");
@@ -247,7 +257,12 @@ public class GEMSettings extends PreferenceActivity
     @Override
     public void onResume() {
         super.onResume();
+
         updateToggles();
+
+        mGeneralAutoBrightMinLevelPref.setValue(Settings.Secure.getInt(
+                getContentResolver(),
+                Settings.Secure.AUTO_BRIGHTNESS_MINIMUM_BACKLIGHT_LEVEL, 16));
     }
 
     private int readColor(String setting, int def) {
