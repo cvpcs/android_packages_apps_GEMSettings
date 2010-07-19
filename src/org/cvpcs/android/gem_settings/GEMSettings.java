@@ -26,8 +26,10 @@ import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.util.Log;
 
+import java.io.File;
 import java.util.List;
 
 public class GEMSettings extends PreferenceActivity
@@ -36,6 +38,9 @@ public class GEMSettings extends PreferenceActivity
 
     private static final String GENERAL_NOTIF_ADB = "display_adb_usb_debugging_notif";
     private static final String GENERAL_NOTIF_LED = "display_notification_led_screen_on";
+
+    private static final String SERVICE_COMPCACHE = "compcache";
+    private static final String SERVICE_COMPCACHE_PROPERTY = "persist.cvpcs.service.compcache";
 
     private static final String UI_COLOR_CLOCK = "color_clock";
     private static final String UI_COLOR_DATE = "color_date";
@@ -60,6 +65,8 @@ public class GEMSettings extends PreferenceActivity
     private CheckBoxPreference mGeneralNotifADBPref;
     private CheckBoxPreference mGeneralNotifLEDPref;
 
+    private CheckBoxPreference mServiceCompcachePref;
+
     private Preference mColorClockPref;
     private Preference mColorDatePref;
     private Preference mColorLabelSPNPref;
@@ -80,6 +87,8 @@ public class GEMSettings extends PreferenceActivity
     private CheckBoxPreference mDisplayStatusBarClockPref;
     private CheckBoxPreference mDisplayBatteryPercentagePref;
 
+    private int mSwapAvailable = -1;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -89,6 +98,16 @@ public class GEMSettings extends PreferenceActivity
 
         mGeneralNotifADBPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_NOTIF_ADB);
         mGeneralNotifLEDPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_NOTIF_LED);
+
+        mServiceCompcachePref = (CheckBoxPreference)prefSet.findPreference(SERVICE_COMPCACHE);
+        if(!isSwapAvailable()) {
+            // disable compcache but display a message so people know why it's not working
+            mServiceCompcachePref.setEnabled(false);
+            mServiceCompcachePref.setChecked(false);
+            mServiceCompcachePref.setSummaryOn("Compcache is not supported in your kernel");
+            mServiceCompcachePref.setSummaryOff("Compcache is not supported in your kernel");
+            SystemProperties.set(SERVICE_COMPCACHE_PROPERTY,"0");
+        }
 
         mColorClockPref = prefSet.findPreference(UI_COLOR_CLOCK);
         mColorDatePref = prefSet.findPreference(UI_COLOR_DATE);
@@ -111,21 +130,6 @@ public class GEMSettings extends PreferenceActivity
         mDisplayBatteryPercentagePref = (CheckBoxPreference)prefSet.findPreference(UI_DISPLAY_BATTERY_PERCENTAGE);
 
         prefSet.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-    }
-
-    private void updateToggles() {
-        mGeneralNotifLEDPref.setChecked(Settings.Secure.getInt(
-                getContentResolver(),
-                Settings.Secure.DISPLAY_NOTIFICATION_LED_SCREEN_ON, 0) != 0);
-        mGeneralNotifADBPref.setChecked(Settings.Secure.getInt(
-                getContentResolver(),
-                Settings.Secure.DISPLAY_ADB_USB_DEBUGGING_NOTIFICATION, 1) != 0);
-        mDisplayStatusBarClockPref.setChecked(Settings.System.getInt(
-                getContentResolver(),
-                Settings.System.DISPLAY_STATUS_BAR_CLOCK, 1) != 0);
-        mDisplayBatteryPercentagePref.setChecked(Settings.System.getInt(
-                getContentResolver(),
-                Settings.System.DISPLAY_BATTERY_PERCENTAGE, 1) != 0);
     }
 
     @Override
@@ -226,6 +230,9 @@ public class GEMSettings extends PreferenceActivity
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.DISPLAY_NOTIFICATION_LED_SCREEN_ON,
                     mGeneralNotifLEDPref.isChecked() ? 1 : 0);
+        } else if (SERVICE_COMPCACHE.equals(key)) {
+            SystemProperties.set(SERVICE_COMPCACHE_PROPERTY,
+                    mServiceCompcachePref.isChecked() ? "1" : "0");
         } else if (UI_DISPLAY_STATUS_BAR_CLOCK.equals(key)) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.DISPLAY_STATUS_BAR_CLOCK,
@@ -249,5 +256,29 @@ public class GEMSettings extends PreferenceActivity
         } catch (SettingNotFoundException e) {
             return def;
         }
+    }
+
+    private void updateToggles() {
+        mGeneralNotifLEDPref.setChecked(Settings.Secure.getInt(
+                getContentResolver(),
+                Settings.Secure.DISPLAY_NOTIFICATION_LED_SCREEN_ON, 0) != 0);
+        mGeneralNotifADBPref.setChecked(Settings.Secure.getInt(
+                getContentResolver(),
+                Settings.Secure.DISPLAY_ADB_USB_DEBUGGING_NOTIFICATION, 1) != 0);
+        mServiceCompcachePref.setChecked(SystemProperties.getBoolean(
+                SERVICE_COMPCACHE_PROPERTY, false));
+        mDisplayStatusBarClockPref.setChecked(Settings.System.getInt(
+                getContentResolver(),
+                Settings.System.DISPLAY_STATUS_BAR_CLOCK, 1) != 0);
+        mDisplayBatteryPercentagePref.setChecked(Settings.System.getInt(
+                getContentResolver(),
+                Settings.System.DISPLAY_BATTERY_PERCENTAGE, 1) != 0);
+    }
+
+    private boolean isSwapAvailable() {
+        if (mSwapAvailable < 0) {
+            mSwapAvailable = new File("/proc/swaps").exists() ? 1 : 0;
+        }
+        return mSwapAvailable > 0;
     }
 }

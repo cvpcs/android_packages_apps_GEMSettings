@@ -38,6 +38,25 @@
                 android:summaryOff="@string/summary_off_general_notif_display_notification_led_screen_on" />
 
         </PreferenceScreen>
+<!--
+        <ListPreference
+            android:key="auto_brightness_minimum_backlight_level"
+            android:title="@string/title_general_auto_brightness_minimum_backlight_level"
+            android:summary="@string/summary_general_auto_brightness_minimum_backlight_level"
+            android:entries="@array/entries_auto_brightness_minimum_backlight_level"
+            android:entryValues="@array/entryvalues_auto_brightness_minimum_backlight_level"
+            android:dialogTitle="@string/dialog_title_general_auto_brightness_minimum_backlight_level" />
+-->
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/title_services">
+
+        <CheckBoxPreference
+            android:key="compcache"
+            android:title="@string/title_services_compcache"
+            android:summaryOn="@string/summary_on_services_compcache"
+            android:summaryOff="@string/summary_off_services_compcache" />
 
     </PreferenceCategory>
 

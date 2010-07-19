@@ -34,6 +34,13 @@
             <string name="summary_on_general_notif_display_notification_led_screen_on">Notification LED will blink while the screen is on</string>
             <string name="summary_off_general_notif_display_notification_led_screen_on">Notification LED will not blink while the screen is on</string>
 
+    <!-- Section devoted to runnable services -->
+    <string name="title_services">Services</string>
+
+        <string name="title_services_compcache">Compcache</string>
+        <string name="summary_on_services_compcache">Compcache is currently running</string>
+        <string name="summary_off_services_compcache">Compcache is not currently running</string>
+
     <!-- Section devoted to user interface tweaking -->
     <string name="title_ui_tweaks">User interface tweaks - Requires Reboot</string>
 
