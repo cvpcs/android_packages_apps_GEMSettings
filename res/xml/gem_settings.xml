@@ -40,15 +40,14 @@
 
         </PreferenceScreen>
 
-        <org.cvpcs.android.gem_settings.SeekBarPreference
+        <org.cvpcs.android.gem_settings.SeekBarStepPreference
             android:key="auto_brightness_minimum_backlight_level"
             android:title="@string/title_general_auto_brightness_minimum_backlight_level"
             android:summary="@string/summary_general_auto_brightness_minimum_backlight_level"
             cvpcs:dialogMessage="@string/dialog_message_general_auto_brightness_minimum_backlight_level"
             cvpcs:prefixText="@string/prefix_text_general_auto_brightness_minimum_backlight_level"
             cvpcs:defaultValue="16"
-            cvpcs:min="2"
-            cvpcs:max="16" />
+            cvpcs:steps="@array/steps_general_auto_brightness_minimum_backlight_level" />
 
     </PreferenceCategory>
 
@@ -62,6 +61,36 @@
             android:summaryOff="@string/summary_off_services_compcache" />
 
     </PreferenceCategory>
+
+    <PreferenceScreen
+        android:title="@string/title_cpufreq"
+        android:summary="@string/summary_cpufreq">
+
+        <CheckBoxPreference
+            android:key="cpufreq_enable"
+            android:title="@string/title_cpufreq_enable"
+            android:summaryOn="@string/summary_on_cpufreq_enable"
+            android:summaryOff="@string/summary_off_cpufreq_enable" />
+
+        <ListPreference
+            android:key="cpufreq_governor"
+            android:title="@string/title_cpufreq_governor" />
+
+        <org.cvpcs.android.gem_settings.SeekBarStepPreference
+            android:key="cpufreq_minimum"
+            android:title="@string/title_cpufreq_minimum"
+            cvpcs:dialogMessage="@string/dialog_message_cpufreq_minimum"
+            cvpcs:suffixText="@string/suffix_text_cpufreq_minimum"
+            cvpcs:defaultValue="10000000" />
+
+        <org.cvpcs.android.gem_settings.SeekBarStepPreference
+            android:key="cpufreq_maximum"
+            android:title="@string/title_cpufreq_maximum"
+            cvpcs:dialogMessage="@string/dialog_message_cpufreq_maximum"
+            cvpcs:suffixText="@string/suffix_text_cpufreq_maximum"
+            cvpcs:defaultValue="0" />
+
+    </PreferenceScreen>
 
     <PreferenceCategory
         android:title="@string/title_ui_tweaks">

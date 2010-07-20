@@ -46,6 +46,24 @@
         <string name="summary_on_services_compcache">Compcache is currently running</string>
         <string name="summary_off_services_compcache">Compcache is not currently running</string>
 
+    <!-- Section devoted to CPU frequency scaling -->
+    <string name="title_cpufreq">CPU frequency scaling - Requires Reboot</string>
+    <string name="summary_cpufreq">Sets the default cpu overclocking speeds at boot</string>
+
+        <string name="title_cpufreq_enable">Enable CPU frequency scaling</string>
+        <string name="summary_on_cpufreq_enable">CPU overclocking will occur at boot-time</string>
+        <string name="summary_off_cpufreq_enable">CPU overclocking will not occur at boot-time</string>
+
+        <string name="title_cpufreq_governor">Scaling Governor</string>
+
+        <string name="title_cpufreq_minimum">Minimum Overclocking Speed</string>
+        <string name="dialog_message_cpufreq_minimum">CPUFreq Minimum</string>
+        <string name="suffix_text_cpufreq_minimum"> Mhz</string>
+
+        <string name="title_cpufreq_maximum">Maximum Overclocking Speed</string>
+        <string name="dialog_message_cpufreq_maximum">CPUFreq Maximum</string>
+        <string name="suffix_text_cpufreq_maximum"> Mhz</string>
+
     <!-- Section devoted to user interface tweaking -->
     <string name="title_ui_tweaks">User interface tweaks - Requires Reboot</string>
 

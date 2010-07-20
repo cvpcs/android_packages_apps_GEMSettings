@@ -20,6 +20,7 @@ package org.cvpcs.android.gem_settings;
 import android.app.ColorPickerDialog;
 import android.content.SharedPreferences;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
@@ -42,7 +43,16 @@ public class GEMSettings extends PreferenceActivity
     private static final String GENERAL_AUTO_BRIGHT_MIN_LEVEL = "auto_brightness_minimum_backlight_level";
 
     private static final String SERVICE_COMPCACHE = "compcache";
-    private static final String SERVICE_COMPCACHE_PROPERTY = "persist.cvpcs.service.compcache";
+    private static final String SERVICE_COMPCACHE_PROPERTY = "persist.cvpcs.service.compcache.enable";
+
+    private static final String CPUFREQ_ENABLE = "cpufreq_enable";
+    private static final String CPUFREQ_ENABLE_PROPERTY = "persist.cvpcs.cpufreq.enable";
+    private static final String CPUFREQ_GOVERNOR = "cpufreq_governor";
+    private static final String CPUFREQ_GOVERNOR_PROPERTY = "persist.cvpcs.cpufreq.governor";
+    private static final String CPUFREQ_MINIMUM = "cpufreq_minimum";
+    private static final String CPUFREQ_MINIMUM_PROPERTY = "persist.cvpcs.cpufreq.minimum";
+    private static final String CPUFREQ_MAXIMUM = "cpufreq_maximum";
+    private static final String CPUFREQ_MAXIMUM_PROPERTY = "persist.cvpcs.cpufreq.maximum";
 
     private static final String UI_COLOR_CLOCK = "color_clock";
     private static final String UI_COLOR_DATE = "color_date";
@@ -67,9 +77,14 @@ public class GEMSettings extends PreferenceActivity
     private CheckBoxPreference mGeneralNotifADBPref;
     private CheckBoxPreference mGeneralNotifLEDPref;
 
-    private SeekBarPreference mGeneralAutoBrightMinLevelPref;
+    private SeekBarStepPreference mGeneralAutoBrightMinLevelPref;
 
     private CheckBoxPreference mServiceCompcachePref;
+
+    private CheckBoxPreference mCPUFreqEnablePref;
+    private ListPreference mCPUFreqGovernorPref;
+    private SeekBarStepPreference mCPUFreqMinimumPref;
+    private SeekBarStepPreference mCPUFreqMaximumPref;
 
     private Preference mColorClockPref;
     private Preference mColorDatePref;
@@ -103,7 +118,7 @@ public class GEMSettings extends PreferenceActivity
         mGeneralNotifADBPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_NOTIF_ADB);
         mGeneralNotifLEDPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_NOTIF_LED);
 
-        mGeneralAutoBrightMinLevelPref = (SeekBarPreference)prefSet.findPreference(GENERAL_AUTO_BRIGHT_MIN_LEVEL);
+        mGeneralAutoBrightMinLevelPref = (SeekBarStepPreference)prefSet.findPreference(GENERAL_AUTO_BRIGHT_MIN_LEVEL);
 
         mServiceCompcachePref = (CheckBoxPreference)prefSet.findPreference(SERVICE_COMPCACHE);
         if(!isSwapAvailable()) {
