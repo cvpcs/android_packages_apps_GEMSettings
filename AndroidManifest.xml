@@ -15,18 +15,35 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="org.cvpcs.android.gem_settings">
+        package="org.cvpcs.android.gem_settings"
+        android:sharedUserId="android.uid.system">
+
+    <uses-sdk android:minSdkVersion="8" />
+
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     
-    <application android:label="@string/app_label"
-            android:icon="@drawable/app_icon">
+    <application android:label="@string/app_label" android:icon="@drawable/app_icon">
 
-        <activity android:name="GEMSettings">
+        <activity android:name=".activities.GEMSettings">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <!-- Disable these because this is now accessed via the settings menu
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER" /> -->
+                <category android:name="com.android.settings.SHORTCUT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activities.Performance">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.UITweaks">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 

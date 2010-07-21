@@ -15,7 +15,11 @@
 ** limitations under the License.
 */
 
-package org.cvpcs.android.gem_settings;
+package org.cvpcs.android.gem_settings.activities;
+
+import org.cvpcs.android.gem_settings.utils.ColorChangedListener;
+import org.cvpcs.android.gem_settings.utils.SeekBarStepPreference;
+import org.cvpcs.android.gem_settings.R;
 
 import android.app.ColorPickerDialog;
 import android.content.SharedPreferences;
@@ -30,7 +34,10 @@ import android.os.Bundle;
 import android.os.SystemProperties;
 import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.util.Arrays;
 import java.util.List;
 
 public class GEMSettings extends PreferenceActivity
@@ -43,16 +50,16 @@ public class GEMSettings extends PreferenceActivity
     private static final String GENERAL_AUTO_BRIGHT_MIN_LEVEL = "auto_brightness_minimum_backlight_level";
 
     private static final String SERVICE_COMPCACHE = "compcache";
-    private static final String SERVICE_COMPCACHE_PROPERTY = "persist.cvpcs.service.compcache.enable";
+    private static final String SERVICE_COMPCACHE_PROPERTY = "persist.gem.svc.rzswap.enable";
 
     private static final String CPUFREQ_ENABLE = "cpufreq_enable";
-    private static final String CPUFREQ_ENABLE_PROPERTY = "persist.cvpcs.cpufreq.enable";
+    private static final String CPUFREQ_ENABLE_PROPERTY    = "persist.gem.cpufreq.enable";
     private static final String CPUFREQ_GOVERNOR = "cpufreq_governor";
-    private static final String CPUFREQ_GOVERNOR_PROPERTY = "persist.cvpcs.cpufreq.governor";
+    private static final String CPUFREQ_GOVERNOR_PROPERTY  = "persist.gem.cpufreq.governor";
     private static final String CPUFREQ_MINIMUM = "cpufreq_minimum";
-    private static final String CPUFREQ_MINIMUM_PROPERTY = "persist.cvpcs.cpufreq.minimum";
+    private static final String CPUFREQ_MINIMUM_PROPERTY   = "persist.gem.cpufreq.minimum";
     private static final String CPUFREQ_MAXIMUM = "cpufreq_maximum";
-    private static final String CPUFREQ_MAXIMUM_PROPERTY = "persist.cvpcs.cpufreq.maximum";
+    private static final String CPUFREQ_MAXIMUM_PROPERTY   = "persist.gem.cpufreq.maximum";
 
     private static final String UI_COLOR_CLOCK = "color_clock";
     private static final String UI_COLOR_DATE = "color_date";
@@ -108,6 +115,8 @@ public class GEMSettings extends PreferenceActivity
 
     private int mSwapAvailable = -1;
 
+    private int[] mCPUFreqSpeeds = null;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -128,7 +137,13 @@ public class GEMSettings extends PreferenceActivity
             mServiceCompcachePref.setSummaryOn("Compcache is not supported in your kernel");
             mServiceCompcachePref.setSummaryOff("Compcache is not supported in your kernel");
             SystemProperties.set(SERVICE_COMPCACHE_PROPERTY,"0");
+            Log.i(TAG, "Disabling compcache due to lack of swap support in kernel");
         }
+
+        mCPUFreqMinimumPref = (SeekBarStepPreference)prefSet.findPreference(CPUFREQ_MINIMUM);
+        mCPUFreqMinimumPref.setSteps(getCPUFreqSpeeds());
+        mCPUFreqMaximumPref = (SeekBarStepPreference)prefSet.findPreference(CPUFREQ_MAXIMUM);
+        mCPUFreqMaximumPref.setSteps(getCPUFreqSpeeds());
 
         mColorClockPref = prefSet.findPreference(UI_COLOR_CLOCK);
         mColorDatePref = prefSet.findPreference(UI_COLOR_DATE);
@@ -310,5 +325,47 @@ public class GEMSettings extends PreferenceActivity
             mSwapAvailable = new File("/proc/swaps").exists() ? 1 : 0;
         }
         return mSwapAvailable > 0;
+    }
+
+    private int[] getCPUFreqSpeeds() {
+        if (mCPUFreqSpeeds == null) {
+            // catchall, this is overwritten if we can
+            mCPUFreqSpeeds =  new int[] { 0, 25, 50, 75, 100 };
+
+            File cpufreqs = new File("/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies");
+
+            if (cpufreqs.exists() && cpufreqs.canRead()) {
+                try {
+                    BufferedReader br = new BufferedReader(new FileReader(cpufreqs));
+
+                    String freqs = "";
+                    String buffer = null;
+
+                    while((buffer = br.readLine()) != null) {
+                        freqs += buffer + " ";
+                    }
+
+                    br.close();
+
+                    String[] freqList = freqs.trim().split(" +");
+
+                    mCPUFreqSpeeds = new int[freqList.length];
+
+                    for (int i = 0; i < freqList.length; i++) {
+                        mCPUFreqSpeeds[i] = Integer.parseInt(freqList[i]) / 1000;
+                    }
+
+                    Arrays.sort(mCPUFreqSpeeds);
+                } catch (Exception e) {
+                    Log.e(TAG, "Exception thrown when gathering CPU frequency data", e);
+                }
+            }
+        }
+
+        for (int i = 0; i < mCPUFreqSpeeds.length; i++) {
+            Log.i(TAG, "CPUFreq[" + i + "] = " + mCPUFreqSpeeds[i]);
+        }
+
+        return mCPUFreqSpeeds;
     }
 }

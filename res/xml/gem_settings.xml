@@ -44,154 +44,27 @@
             android:key="auto_brightness_minimum_backlight_level"
             android:title="@string/title_general_auto_brightness_minimum_backlight_level"
             android:summary="@string/summary_general_auto_brightness_minimum_backlight_level"
-            cvpcs:dialogMessage="@string/dialog_message_general_auto_brightness_minimum_backlight_level"
-            cvpcs:prefixText="@string/prefix_text_general_auto_brightness_minimum_backlight_level"
+            cvpcs:dialogMessage="Auto brightness minimum"
+            cvpcs:prefixText="Level "
             cvpcs:defaultValue="16"
             cvpcs:steps="@array/steps_general_auto_brightness_minimum_backlight_level" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="@string/title_services">
-
-        <CheckBoxPreference
-            android:key="compcache"
-            android:title="@string/title_services_compcache"
-            android:summaryOn="@string/summary_on_services_compcache"
-            android:summaryOff="@string/summary_off_services_compcache" />
-
-    </PreferenceCategory>
-
-    <PreferenceScreen
-        android:title="@string/title_cpufreq"
-        android:summary="@string/summary_cpufreq">
-
-        <CheckBoxPreference
-            android:key="cpufreq_enable"
-            android:title="@string/title_cpufreq_enable"
-            android:summaryOn="@string/summary_on_cpufreq_enable"
-            android:summaryOff="@string/summary_off_cpufreq_enable" />
-
-        <ListPreference
-            android:key="cpufreq_governor"
-            android:title="@string/title_cpufreq_governor" />
-
-        <org.cvpcs.android.gem_settings.SeekBarStepPreference
-            android:key="cpufreq_minimum"
-            android:title="@string/title_cpufreq_minimum"
-            cvpcs:dialogMessage="@string/dialog_message_cpufreq_minimum"
-            cvpcs:suffixText="@string/suffix_text_cpufreq_minimum"
-            cvpcs:defaultValue="10000000" />
-
-        <org.cvpcs.android.gem_settings.SeekBarStepPreference
-            android:key="cpufreq_maximum"
-            android:title="@string/title_cpufreq_maximum"
-            cvpcs:dialogMessage="@string/dialog_message_cpufreq_maximum"
-            cvpcs:suffixText="@string/suffix_text_cpufreq_maximum"
-            cvpcs:defaultValue="0" />
-
+    <PreferenceScreen android:key="performance"
+        android:title="@string/title_performance"
+        android:summary="@string/summary_performance">
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="org.cvpcs.android.gem_settings"
+            android:targetClass="org.cvpcs.android.gem_settings.activities.Performance" />
     </PreferenceScreen>
 
-    <PreferenceCategory
-        android:title="@string/title_ui_tweaks">
-
-        <PreferenceScreen
-            android:title="@string/title_ui_tweaks_colors"
-            android:summary="@string/summary_ui_tweaks_colors">
-
-            <PreferenceScreen
-                android:title="@string/title_ui_tweaks_colors_general"
-                android:summary="@string/summary_ui_tweaks_colors_general">
-
-                <Preference android:key="color_clock"
-                    android:title="@string/title_ui_tweaks_colors_general_clock"
-                    android:defaultValue="-16777216" />
-
-                <Preference android:key="color_date"
-                    android:title="@string/title_ui_tweaks_colors_general_date"
-                    android:defaultValue="-16777216" />
-
-                <Preference android:key="color_label_spn"
-                    android:title="@string/title_ui_tweaks_colors_general_label_spn"
-                    android:defaultValue="-16777216" />
-
-                <Preference android:key="color_label_plmn"
-                    android:title="@string/title_ui_tweaks_colors_general_label_plmn"
-                    android:defaultValue="-16777216" />
-
-                <Preference android:key="color_battery_percentage"
-                    android:title="@string/title_ui_tweaks_colors_general_battery_percentage"
-                    android:defaultValue="-1" />
-
-            </PreferenceScreen>
-
-            <PreferenceScreen
-                android:title="@string/title_ui_tweaks_colors_notification"
-                android:summary="@string/summary_ui_tweaks_colors_notification">
-
-                <Preference android:key="color_notification_ticker_text"
-                    android:title="@string/title_ui_tweaks_colors_notification_ticker_text"
-                    android:defaultValue="-16777216" />
-
-                <Preference android:key="color_notification_none"
-                    android:title="@string/title_ui_tweaks_colors_notification_none"
-                    android:defaultValue="-1" />
-
-                <Preference android:key="color_notification_latest"
-                    android:title="@string/title_ui_tweaks_colors_notification_latest"
-                    android:defaultValue="-1" />
-
-                <Preference android:key="color_notification_ongoing"
-                    android:title="@string/title_ui_tweaks_colors_notification_ongoing"
-                    android:defaultValue="-1" />
-
-                <Preference android:key="color_notification_clear_button"
-                    android:title="@string/title_ui_tweaks_colors_notification_clear_button"
-                    android:defaultValue="-16777216" />
-
-                <PreferenceCategory
-                    android:title="@string/title_ui_tweaks_colors_notification_item">
-
-                    <Preference android:key="color_notification_item_title"
-                        android:title="@string/title_ui_tweaks_colors_notification_item_title"
-                        android:defaultValue="-16777216" />
-
-                    <Preference android:key="color_notification_item_text"
-                        android:title="@string/title_ui_tweaks_colors_notification_item_text"
-                        android:defaultValue="-16777216" />
-
-                    <Preference android:key="color_notification_item_progress_text"
-                        android:title="@string/title_ui_tweaks_colors_notification_item_progress_text"
-                        android:defaultValue="-16777216" />
-
-                    <Preference android:key="color_notification_item_time"
-                        android:title="@string/title_ui_tweaks_colors_notification_item_time"
-                        android:defaultValue="-16777216" />
-
-                </PreferenceCategory>
-
-            </PreferenceScreen>
-
-        </PreferenceScreen>
-
-        <PreferenceScreen
-            android:title="@string/title_ui_tweaks_display"
-            android:summary="@string/summary_ui_tweaks_display">
-
-            <CheckBoxPreference
-                android:key="display_status_bar_clock"
-                android:title="@string/title_ui_tweaks_display_status_bar_clock"
-                android:summaryOn="@string/summary_on_ui_tweaks_display_status_bar_clock"
-                android:summaryOff="@string/summary_off_ui_tweaks_display_status_bar_clock" />
-
-            <CheckBoxPreference
-                android:key="display_battery_percentage"
-                android:title="@string/title_ui_tweaks_display_battery_percentage"
-                android:summaryOn="@string/summary_on_ui_tweaks_display_battery_percentage"
-                android:summaryOff="@string/summary_off_ui_tweaks_display_battery_percentage" />
-
-        </PreferenceScreen>
-
-    </PreferenceCategory>
+    <PreferenceScreen android:key="ui_tweaks"
+        android:title="@string/title_ui_tweaks"
+        android:summary="@string/summary_ui_tweaks">
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="org.cvpcs.android.gem_settings"
+            android:targetClass="org.cvpcs.android.gem_settings.activities.UITweaks" />
+    </PreferenceScreen>
 
 </PreferenceScreen>

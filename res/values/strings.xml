@@ -36,84 +36,61 @@
 
         <string name="title_general_auto_brightness_minimum_backlight_level">Auto-brightness minimum level</string>
         <string name="summary_general_auto_brightness_minimum_backlight_level">Set the lowest backlight level for auto-brightness mode</string>
-        <string name="dialog_message_general_auto_brightness_minimum_backlight_level">Auto-brightness minimum</string>
-        <string name="prefix_text_general_auto_brightness_minimum_backlight_level">Level </string>
 
-    <!-- Section devoted to runnable services -->
-    <string name="title_services">Services</string>
+    <!-- Section devoted to runnable performance enhancements -->
+    <string name="title_performance">Performance</string>
+    <string name="summary_performance">Verious services/enhancements to the system</string>
 
-        <string name="title_services_compcache">Compcache</string>
-        <string name="summary_on_services_compcache">Compcache is currently running</string>
-        <string name="summary_off_services_compcache">Compcache is not currently running</string>
+        <string name="title_services">Services</string>
 
-    <!-- Section devoted to CPU frequency scaling -->
-    <string name="title_cpufreq">CPU frequency scaling - Requires Reboot</string>
-    <string name="summary_cpufreq">Sets the default cpu overclocking speeds at boot</string>
+            <string name="title_services_compcache">Compcache</string>
+            <string name="summary_on_services_compcache">Compcache is currently running</string>
+            <string name="summary_off_services_compcache">Compcache is not currently running</string>
 
-        <string name="title_cpufreq_enable">Enable CPU frequency scaling</string>
-        <string name="summary_on_cpufreq_enable">CPU overclocking will occur at boot-time</string>
-        <string name="summary_off_cpufreq_enable">CPU overclocking will not occur at boot-time</string>
+        <string name="title_cpufreq">CPU frequency scaling - Requires Reboot</string>
 
-        <string name="title_cpufreq_governor">Scaling Governor</string>
+            <string name="title_cpufreq_enable">Enable CPU frequency scaling</string>
+            <string name="summary_on_cpufreq_enable">CPU overclocking will occur at boot-time</string>
+            <string name="summary_off_cpufreq_enable">CPU overclocking will not occur at boot-time</string>
 
-        <string name="title_cpufreq_minimum">Minimum Overclocking Speed</string>
-        <string name="dialog_message_cpufreq_minimum">CPUFreq Minimum</string>
-        <string name="suffix_text_cpufreq_minimum"> Mhz</string>
+            <string name="title_cpufreq_governor">Scaling Governor</string>
 
-        <string name="title_cpufreq_maximum">Maximum Overclocking Speed</string>
-        <string name="dialog_message_cpufreq_maximum">CPUFreq Maximum</string>
-        <string name="suffix_text_cpufreq_maximum"> Mhz</string>
+            <string name="title_cpufreq_minimum">Minimum Overclocking Speed</string>
+
+            <string name="title_cpufreq_maximum">Maximum Overclocking Speed</string>
 
     <!-- Section devoted to user interface tweaking -->
-    <string name="title_ui_tweaks">User interface tweaks - Requires Reboot</string>
+    <string name="title_ui_tweaks">User interface tweaks</string>
+    <string name="summary_ui_tweaks">Requires reboot</string>
 
-        <string name="title_ui_tweaks_colors">Text colors</string>
-        <string name="summary_ui_tweaks_colors">Change various UI text colors</string>
+        <string name="title_ui_tweaks_status_bar">Status Bar</string>
 
-            <string name="title_ui_tweaks_colors_general">General</string>
-            <string name="summary_ui_tweaks_colors_general">Change various general colors</string>
+            <string name="title_ui_tweaks_status_bar_color_clock">Clock</string>
+            <string name="title_ui_tweaks_status_bar_color_date">Date</string>
+            <string name="title_ui_tweaks_status_bar_color_label_spn">Carrier SPN label</string>
+            <string name="title_ui_tweaks_status_bar_color_label_plmn">Carrier PLMN label</string>
+            <string name="title_ui_tweaks_status_bar_color_battery_percentage">Battery Percentage</string>
 
-                <string name="title_ui_tweaks_colors_general_clock">Clock</string>
+        <string name="title_ui_tweaks_notifications">Notifications</string>
 
-                <string name="title_ui_tweaks_colors_general_date">Date</string>
+            <string name="title_ui_tweaks_notifications_color_ticker_text">Ticker text</string>
+            <string name="title_ui_tweaks_notifications_color_none">No notifications title</string>
+            <string name="title_ui_tweaks_notifications_color_latest">Latest notifications title</string>
+            <string name="title_ui_tweaks_notifications_color_ongoing">Ongoing notifications title</string>
+            <string name="title_ui_tweaks_notifications_color_clear_button">Clear button text</string>
+            <string name="title_ui_tweaks_notifications_color_item_title">Item title</string>
+            <string name="title_ui_tweaks_notifications_color_item_text">Item text</string>
+            <string name="title_ui_tweaks_notifications_color_item_progress_text">Item progress bar text</string>
+            <string name="title_ui_tweaks_notifications_color_item_time">Item time</string>
 
-                <string name="title_ui_tweaks_colors_general_label_spn">Carrier SPN label</string>
+        <string name="title_ui_tweaks_display">Show/hide</string>
 
-                <string name="title_ui_tweaks_colors_general_label_plmn">Carrier PLMN label</string>
+            <string name="title_ui_tweaks_display_status_bar_clock">Status bar clock</string>
+            <string name="summary_on_ui_tweaks_display_status_bar_clock">Clock is displayed in the status bar</string>
+            <string name="summary_off_ui_tweaks_display_status_bar_clock">Clock is not displayed in the status bar</string>
 
-                <string name="title_ui_tweaks_colors_general_battery_percentage">Battery Percentage</string>
+            <string name="title_ui_tweaks_display_battery_percentage">Battery percentage</string>
+            <string name="summary_on_ui_tweaks_display_battery_percentage">Battery percentage is displayed over the battery icon</string>
+            <string name="summary_off_ui_tweaks_display_battery_percentage">Battery percentage is not displayed over the battery icon</string>
 
-            <string name="title_ui_tweaks_colors_notification">Notifications</string>
-            <string name="summary_ui_tweaks_colors_notification">Change various notification colors</string>
-
-                <string name="title_ui_tweaks_colors_notification_ticker_text">Ticker text</string>
-
-                <string name="title_ui_tweaks_colors_notification_none">No notifications title</string>
-
-                <string name="title_ui_tweaks_colors_notification_latest">Latest notifications title</string>
-
-                <string name="title_ui_tweaks_colors_notification_ongoing">Ongoing notifications title</string>
-
-                <string name="title_ui_tweaks_colors_notification_clear_button">Clear button text</string>
-
-                <string name="title_ui_tweaks_colors_notification_item">Notification items</string>
-
-                    <string name="title_ui_tweaks_colors_notification_item_title">Item title</string>
-
-                    <string name="title_ui_tweaks_colors_notification_item_text">Item text</string>
-
-                    <string name="title_ui_tweaks_colors_notification_item_progress_text">Item progress bar text</string>
-
-                    <string name="title_ui_tweaks_colors_notification_item_time">Item time</string>
-
-            <string name="title_ui_tweaks_display">Show/hide</string>
-            <string name="summary_ui_tweaks_display">Enable or disable the drawing of various on-screen items</string>
-
-                <string name="title_ui_tweaks_display_status_bar_clock">Status bar clock</string>
-                <string name="summary_on_ui_tweaks_display_status_bar_clock">Clock is displayed in the status bar</string>
-                <string name="summary_off_ui_tweaks_display_status_bar_clock">Clock is not displayed in the status bar</string>
-
-                <string name="title_ui_tweaks_display_battery_percentage">Battery percentage</string>
-                <string name="summary_on_ui_tweaks_display_battery_percentage">Battery percentage is displayed over the battery icon</string>
-                <string name="summary_off_ui_tweaks_display_battery_percentage">Battery percentage is not displayed over the battery icon</string>
 </resources>

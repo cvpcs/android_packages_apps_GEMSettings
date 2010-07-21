@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/*
+ * Copyright 2008, The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:cvpcs="http://schemas.cvpcs.org/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/title_services">
+
+        <CheckBoxPreference
+            android:key="compcache"
+            android:title="@string/title_services_compcache"
+            android:summaryOn="@string/summary_on_services_compcache"
+            android:summaryOff="@string/summary_off_services_compcache" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/title_cpufreq">
+
+        <CheckBoxPreference
+            android:key="cpufreq_enable"
+            android:title="@string/title_cpufreq_enable"
+            android:summaryOn="@string/summary_on_cpufreq_enable"
+            android:summaryOff="@string/summary_off_cpufreq_enable" />
+
+        <ListPreference
+            android:key="cpufreq_governor"
+            android:title="@string/title_cpufreq_governor" />
+
+        <org.cvpcs.android.gem_settings.SeekBarStepPreference
+            android:key="cpufreq_minimum"
+            android:title="@string/title_cpufreq_minimum"
+            cvpcs:dialogMessage="Minimum overclocking speed"
+            cvpcs:suffixText=" Mhz"
+            cvpcs:defaultValue="0" />
+
+        <org.cvpcs.android.gem_settings.SeekBarStepPreference
+            android:key="cpufreq_maximum"
+            android:title="@string/title_cpufreq_maximum"
+            cvpcs:dialogMessage="Maximum overclocking speed"
+            cvpcs:suffixText=" Mhz"
+            cvpcs:defaultValue="10000" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

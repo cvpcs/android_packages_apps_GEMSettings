@@ -1,7 +1,8 @@
-package org.cvpcs.android.gem_settings;
+package org.cvpcs.android.gem_settings.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -40,15 +41,14 @@ public class SeekBarStepPreference extends DialogPreference implements SeekBar.O
         mPrefix = attrs.getAttributeValue(cvpcsns, "prefixText");
         mSuffix = attrs.getAttributeValue(cvpcsns, "suffixText");
 
+        mSteps = new int[] {0, 25, 50, 75, 100};
         String stepResId = attrs.getAttributeValue(cvpcsns, "steps");
         if (stepResId != null) {
             Resources res = context.getResources();
-            int id = res.getIdentifier(stepResId, null, null);
+            int id = res.getIdentifier(stepResId, null, "org.cvpcs.android.gem_settings");
             if (id > 0) {
                 mSteps = res.getIntArray(id);
             }
-        } else {
-            mSteps = new int[] {0, 25, 50, 75, 100};
         }
 
         mDefault = getNearestStep(
@@ -119,7 +119,7 @@ public class SeekBarStepPreference extends DialogPreference implements SeekBar.O
 
     public void onProgressChanged(SeekBar seek, int value, boolean fromTouch)
     {
-        mValue = getNearestStep(value + mSteps[0]);
+        setValue(value + mSteps[0]);
 
         String t = String.valueOf(mValue);
 
@@ -137,6 +137,7 @@ public class SeekBarStepPreference extends DialogPreference implements SeekBar.O
     }
 
     public void onStartTrackingTouch(SeekBar seek) { }
+
     public void onStopTrackingTouch(SeekBar seek) { }
 
     public void setValue(int value) {
@@ -151,6 +152,10 @@ public class SeekBarStepPreference extends DialogPreference implements SeekBar.O
         mSteps = steps;
         mValue = getNearestStep(mValue);
         mDefault = getNearestStep(mDefault);
+        if(mSeekBar != null) {
+            mSeekBar.setMax(mSteps[mSteps.length - 1] - mSteps[0]);
+            mSeekBar.setProgress(mValue - mSteps[0]);
+        }
     }
 
     private int getNearestStep(int value) {
