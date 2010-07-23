@@ -40,7 +40,7 @@
 
         </PreferenceScreen>
 
-        <org.cvpcs.android.gem_settings.SeekBarStepPreference
+        <org.cvpcs.android.gem_settings.utils.SeekBarStepPreference
             android:key="auto_brightness_minimum_backlight_level"
             android:title="@string/title_general_auto_brightness_minimum_backlight_level"
             android:summary="@string/summary_general_auto_brightness_minimum_backlight_level"

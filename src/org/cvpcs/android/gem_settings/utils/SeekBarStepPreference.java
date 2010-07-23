@@ -31,6 +31,7 @@ public class SeekBarStepPreference extends DialogPreference implements SeekBar.O
     private int mDefault = 0;
     private int[] mSteps;
     private int mValue = 0;
+    private boolean mValueSet = false;
 
     public SeekBarStepPreference(Context context, AttributeSet attrs) {
         super(context,attrs);
@@ -85,10 +86,21 @@ public class SeekBarStepPreference extends DialogPreference implements SeekBar.O
             LinearLayout.LayoutParams.WRAP_CONTENT);
         layout.addView(mSeekBar, seekBarParams);
 
-        if (shouldPersist())
-            mValue = getPersistedInt(mDefault);
-        else
-            mValue = mDefault;
+        if (!mValueSet) {
+            if (shouldPersist())
+                mValue = getPersistedInt(mDefault);
+            else
+                mValue = mDefault;
+        }
+
+        String t = String.valueOf(mValue);
+
+        if(mPrefix != null)
+            t = mPrefix.concat(t);
+        if(mSuffix != null)
+            t = t.concat(mSuffix);
+
+        mValueText.setText(t);
 
         mSeekBar.setMax(mSteps[mSteps.length - 1] - mSteps[0]);
         mSeekBar.setProgress(mValue - mSteps[0]);
@@ -109,10 +121,12 @@ public class SeekBarStepPreference extends DialogPreference implements SeekBar.O
     {
         super.onSetInitialValue(restore, defaultValue);
 
-        if (restore)
-            mValue = shouldPersist() ? getPersistedInt(mDefault) : mDefault;
-        else
-            mValue = (Integer)defaultValue;
+        if (!mValueSet) {
+            if (restore)
+                mValue = shouldPersist() ? getPersistedInt(mDefault) : mDefault;
+            else
+                mValue = (Integer)defaultValue;
+        }
 
         mValue = getNearestStep(mValue);
     }
@@ -142,6 +156,7 @@ public class SeekBarStepPreference extends DialogPreference implements SeekBar.O
 
     public void setValue(int value) {
         mValue = getNearestStep(value);
+        mValueSet = true;
         if (mSeekBar != null)
             mSeekBar.setProgress(mValue - mSteps[0]);
     }

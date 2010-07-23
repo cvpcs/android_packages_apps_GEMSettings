@@ -43,14 +43,14 @@
             android:key="cpufreq_governor"
             android:title="@string/title_cpufreq_governor" />
 
-        <org.cvpcs.android.gem_settings.SeekBarStepPreference
+        <org.cvpcs.android.gem_settings.utils.SeekBarStepPreference
             android:key="cpufreq_minimum"
             android:title="@string/title_cpufreq_minimum"
             cvpcs:dialogMessage="Minimum overclocking speed"
             cvpcs:suffixText=" Mhz"
             cvpcs:defaultValue="0" />
 
-        <org.cvpcs.android.gem_settings.SeekBarStepPreference
+        <org.cvpcs.android.gem_settings.utils.SeekBarStepPreference
             android:key="cpufreq_maximum"
             android:title="@string/title_cpufreq_maximum"
             cvpcs:dialogMessage="Maximum overclocking speed"

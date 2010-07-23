@@ -18,6 +18,7 @@
 package org.cvpcs.android.gem_settings.activities;
 
 import org.cvpcs.android.gem_settings.R;
+import org.cvpcs.android.gem_settings.utils.CPUFreqStatus;
 import org.cvpcs.android.gem_settings.utils.SeekBarStepPreference;
 
 import android.content.SharedPreferences;
@@ -32,11 +33,7 @@ import android.os.Bundle;
 import android.os.SystemProperties;
 import android.util.Log;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.util.Arrays;
-import java.util.List;
 
 public class Performance extends PreferenceActivity {
     private static final String TAG = "GEMSettings[Performance]";
@@ -82,10 +79,14 @@ public class Performance extends PreferenceActivity {
             Log.i(TAG, "Disabling compcache due to lack of swap support in kernel");
         }
 
+        mCPUFreqGovernorPref = (ListPreference)prefSet.findPreference(CPUFREQ_GOVERNOR);
+        mCPUFreqGovernorPref.setEntries(CPUFreqStatus.getGovernors());
+        mCPUFreqGovernorPref.setEntryValues(CPUFreqStatus.getGovernors());
+
         mCPUFreqMinimumPref = (SeekBarStepPreference)prefSet.findPreference(CPUFREQ_MINIMUM);
-        mCPUFreqMinimumPref.setSteps(getCPUFreqSpeeds());
+        mCPUFreqMinimumPref.setSteps(CPUFreqStatus.getSpeedSteps());
         mCPUFreqMaximumPref = (SeekBarStepPreference)prefSet.findPreference(CPUFREQ_MAXIMUM);
-        mCPUFreqMaximumPref.setSteps(getCPUFreqSpeeds());
+        mCPUFreqMaximumPref.setSteps(CPUFreqStatus.getSpeedSteps());
     }
 
     @Override
@@ -93,6 +94,7 @@ public class Performance extends PreferenceActivity {
         if (preference == mServiceCompcachePref) {
             SystemProperties.set(SERVICE_COMPCACHE_PROPERTY,
                     mServiceCompcachePref.isChecked() ? "1" : "0");
+            Log.i(TAG, (mServiceCompcachePref.isChecked() ? "Enabled" : "Disabled") + " compcache");
         }
         return true;
     }
@@ -103,6 +105,9 @@ public class Performance extends PreferenceActivity {
 
         mServiceCompcachePref.setChecked(SystemProperties.getBoolean(
                 SERVICE_COMPCACHE_PROPERTY, false));
+
+        mCPUFreqMinimumPref.setValue(CPUFreqStatus.getCurrentMinimum());
+        mCPUFreqMaximumPref.setValue(CPUFreqStatus.getCurrentMaximum());
     }
 
     private boolean isSwapAvailable() {
@@ -110,47 +115,5 @@ public class Performance extends PreferenceActivity {
             mSwapAvailable = new File("/proc/swaps").exists() ? 1 : 0;
         }
         return mSwapAvailable > 0;
-    }
-
-    private int[] getCPUFreqSpeeds() {
-        if (mCPUFreqSpeeds == null) {
-            // catchall, this is overwritten if we can
-            mCPUFreqSpeeds =  new int[] { 0, 25, 50, 75, 100 };
-
-            File cpufreqs = new File("/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies");
-
-            if (cpufreqs.exists() && cpufreqs.canRead()) {
-                try {
-                    BufferedReader br = new BufferedReader(new FileReader(cpufreqs));
-
-                    String freqs = "";
-                    String buffer = null;
-
-                    while((buffer = br.readLine()) != null) {
-                        freqs += buffer + " ";
-                    }
-
-                    br.close();
-
-                    String[] freqList = freqs.trim().split(" +");
-
-                    mCPUFreqSpeeds = new int[freqList.length];
-
-                    for (int i = 0; i < freqList.length; i++) {
-                        mCPUFreqSpeeds[i] = Integer.parseInt(freqList[i]) / 1000;
-                    }
-
-                    Arrays.sort(mCPUFreqSpeeds);
-                } catch (Exception e) {
-                    Log.e(TAG, "Exception thrown when gathering CPU frequency data", e);
-                }
-            }
-        }
-
-        for (int i = 0; i < mCPUFreqSpeeds.length; i++) {
-            Log.i(TAG, "CPUFreq[" + i + "] = " + mCPUFreqSpeeds[i]);
-        }
-
-        return mCPUFreqSpeeds;
     }
 }
