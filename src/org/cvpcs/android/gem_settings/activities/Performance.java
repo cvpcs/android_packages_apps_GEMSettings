@@ -39,16 +39,16 @@ public class Performance extends PreferenceActivity {
     private static final String TAG = "GEMSettings[Performance]";
 
     private static final String SERVICE_COMPCACHE = "compcache";
-    private static final String SERVICE_COMPCACHE_PROPERTY = "persist.gem.svc.rzswap.enable";
+    private static final String SERVICE_COMPCACHE_PROPERTY = "persist.service.gem.rzswap.on";
 
     private static final String CPUFREQ_ENABLE = "cpufreq_enable";
-    private static final String CPUFREQ_ENABLE_PROPERTY    = "persist.gem.cpufreq.enable";
+    private static final String CPUFREQ_ENABLE_PROPERTY    = "persist.sys.gem.cpufreq.on";
     private static final String CPUFREQ_GOVERNOR = "cpufreq_governor";
-    private static final String CPUFREQ_GOVERNOR_PROPERTY  = "persist.gem.cpufreq.governor";
+    private static final String CPUFREQ_GOVERNOR_PROPERTY  = "persist.sys.gem.cpufreq.gov";
     private static final String CPUFREQ_MINIMUM = "cpufreq_minimum";
-    private static final String CPUFREQ_MINIMUM_PROPERTY   = "persist.gem.cpufreq.minimum";
+    private static final String CPUFREQ_MINIMUM_PROPERTY   = "persist.sys.gem.cpufreq.min";
     private static final String CPUFREQ_MAXIMUM = "cpufreq_maximum";
-    private static final String CPUFREQ_MAXIMUM_PROPERTY   = "persist.gem.cpufreq.maximum";
+    private static final String CPUFREQ_MAXIMUM_PROPERTY   = "persist.sys.gem.cpufreq.max";
 
     private CheckBoxPreference mServiceCompcachePref;
 
