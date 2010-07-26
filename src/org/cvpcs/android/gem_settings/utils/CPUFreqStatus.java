@@ -107,7 +107,7 @@ public class CPUFreqStatus {
         }
 
         // bad things happened, so return negative
-        return -1
+        return -1;
     }
 
     public static int getCurrentMinimum() {
@@ -118,7 +118,7 @@ public class CPUFreqStatus {
         }
 
         // bad things happened, so return negative
-        return -1
+        return -1;
     }
 
     private static String getFileContents(String filename) {
