@@ -114,7 +114,7 @@ public class Performance extends PreferenceActivity
         mServiceCompcachePref.setChecked(SystemProperties.getBoolean(
                 SERVICE_COMPCACHE_PROPERTY, false));
 
-        mCPUFreqEnablePref.setValue(SystemProperties.getBoolean(
+        mCPUFreqEnablePref.setChecked(SystemProperties.getBoolean(
                 CPUFREQ_ENABLE_PROPERTY, true));
         mCPUFreqGovernorPref.setValue(SystemProperties.get(
                 CPUFREQ_GOVERNOR_PROPERTY, CPUFreqStatus.getCurrentGovernor()));
@@ -124,18 +124,18 @@ public class Performance extends PreferenceActivity
                 CPUFREQ_MAXIMUM_PROPERTY, CPUFreqStatus.getCurrentMaximum()));
     }
 
-    private boolean onPreferenceChange(Preference preference, Object objValue) {
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
         if (preference == mCPUFreqGovernorPref) {
             SystemProperties.set(CPUFREQ_GOVERNOR_PROPERTY,
                     mCPUFreqGovernorPref.getValue());
             return true;
         } else if (preference == mCPUFreqMinimumPref) {
             SystemProperties.set(CPUFREQ_MINIMUM_PROPERTY,
-                    mCPUFreqMinimumPref.getValue());
+                    Integer.toString(mCPUFreqMinimumPref.getValue()));
             return true;
         } else if (preference == mCPUFreqMaximumPref) {
             SystemProperties.set(CPUFREQ_MAXIMUM_PROPERTY,
-                    mCPUFreqMaximumPref.getValue());
+                    Integer.toString(mCPUFreqMaximumPref.getValue()));
             return true;
         }
         return false;

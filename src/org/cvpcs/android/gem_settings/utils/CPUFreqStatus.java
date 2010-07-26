@@ -88,10 +88,10 @@ public class CPUFreqStatus {
         return SPEED_STEPS;
     }
 
-    public static int getCurrentGovernor() {
+    public static String getCurrentGovernor() {
         String gov = getFileContents(FILE_CURRENT_GOVERNOR);
         if (gov != null) {
-            Log.i(TAG, "Found governor: [" + speed + "]");
+            Log.i(TAG, "Found governor: [" + gov + "]");
             return gov.trim();
         }
 
