@@ -35,7 +35,8 @@ import android.util.Log;
 
 import java.io.File;
 
-public class Performance extends PreferenceActivity {
+public class Performance extends PreferenceActivity
+        implements Preference.OnPreferenceChangeListener {
     private static final String TAG = "GEMSettings[Performance]";
 
     private static final String SERVICE_COMPCACHE = "compcache";
@@ -79,14 +80,17 @@ public class Performance extends PreferenceActivity {
             Log.i(TAG, "Disabling compcache due to lack of swap support in kernel");
         }
 
+        mCPUFreqEnablePref = (CheckBoxPreference)prefSet.findPreference(CPUFREQ_ENABLE);
         mCPUFreqGovernorPref = (ListPreference)prefSet.findPreference(CPUFREQ_GOVERNOR);
         mCPUFreqGovernorPref.setEntries(CPUFreqStatus.getGovernors());
         mCPUFreqGovernorPref.setEntryValues(CPUFreqStatus.getGovernors());
-
+        mCPUFreqGovernorPref.setOnPreferenceChangeListener(this);
         mCPUFreqMinimumPref = (SeekBarStepPreference)prefSet.findPreference(CPUFREQ_MINIMUM);
         mCPUFreqMinimumPref.setSteps(CPUFreqStatus.getSpeedSteps());
+        mCPUFreqMinimumPref.setOnPreferenceChangeListener(this);
         mCPUFreqMaximumPref = (SeekBarStepPreference)prefSet.findPreference(CPUFREQ_MAXIMUM);
         mCPUFreqMaximumPref.setSteps(CPUFreqStatus.getSpeedSteps());
+        mCPUFreqMaximumPref.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -94,9 +98,13 @@ public class Performance extends PreferenceActivity {
         if (preference == mServiceCompcachePref) {
             SystemProperties.set(SERVICE_COMPCACHE_PROPERTY,
                     mServiceCompcachePref.isChecked() ? "1" : "0");
-            Log.i(TAG, (mServiceCompcachePref.isChecked() ? "Enabled" : "Disabled") + " compcache");
+            return true;
+        } else if (preference == mCPUFreqEnablePref) {
+            SystemProperties.set(CPUFREQ_ENABLE_PROPERTY,
+                    mServiceCompcachePref.isChecked() ? "1" : "0");
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override
@@ -106,8 +114,31 @@ public class Performance extends PreferenceActivity {
         mServiceCompcachePref.setChecked(SystemProperties.getBoolean(
                 SERVICE_COMPCACHE_PROPERTY, false));
 
-        mCPUFreqMinimumPref.setValue(CPUFreqStatus.getCurrentMinimum());
-        mCPUFreqMaximumPref.setValue(CPUFreqStatus.getCurrentMaximum());
+        mCPUFreqEnablePref.setValue(SystemProperties.getBoolean(
+                CPUFREQ_ENABLE_PROPERTY, true));
+        mCPUFreqGovernorPref.setValue(SystemProperties.get(
+                CPUFREQ_GOVERNOR_PROPERTY, CPUFreqStatus.getCurrentGovernor()));
+        mCPUFreqMinimumPref.setValue(SystemProperties.getInt(
+                CPUFREQ_MINIMUM_PROPERTY, CPUFreqStatus.getCurrentMinimum()));
+        mCPUFreqMaximumPref.setValue(SystemProperties.getInt(
+                CPUFREQ_MAXIMUM_PROPERTY, CPUFreqStatus.getCurrentMaximum()));
+    }
+
+    private boolean onPreferenceChange(Preference preference, Object objValue) {
+        if (preference == mCPUFreqGovernorPref) {
+            SystemProperties.set(CPUFREQ_GOVERNOR_PROPERTY,
+                    mCPUFreqGovernorPref.getValue());
+            return true;
+        } else if (preference == mCPUFreqMinimumPref) {
+            SystemProperties.set(CPUFREQ_MINIMUM_PROPERTY,
+                    mCPUFreqMinimumPref.getValue());
+            return true;
+        } else if (preference == mCPUFreqMaximumPref) {
+            SystemProperties.set(CPUFREQ_MAXIMUM_PROPERTY,
+                    mCPUFreqMaximumPref.getValue());
+            return true;
+        }
+        return false;
     }
 
     private boolean isSwapAvailable() {

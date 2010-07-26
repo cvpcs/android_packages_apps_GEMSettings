@@ -29,6 +29,7 @@ public class CPUFreqStatus {
 
     private static final String FILE_STEPS = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies";
     private static final String FILE_GOVERNORS = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors";
+    private static final String FILE_CURRENT_GOVERNOR = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor";
     private static final String FILE_MAX_SPEED = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq";
     private static final String FILE_MIN_SPEED = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq";
 
@@ -87,30 +88,37 @@ public class CPUFreqStatus {
         return SPEED_STEPS;
     }
 
-    public static int getCurrentMaximum() {
-        int[] steps = getSpeedSteps();
+    public static int getCurrentGovernor() {
+        String gov = getFileContents(FILE_CURRENT_GOVERNOR);
+        if (gov != null) {
+            Log.i(TAG, "Found governor: [" + speed + "]");
+            return gov.trim();
+        }
 
+        // bad things happened, so return null
+        return null;
+    }
+
+    public static int getCurrentMaximum() {
         String speed = getFileContents(FILE_MAX_SPEED);
         if (speed != null) {
             Log.i(TAG, "Found maximum speed: [" + speed + "]");
             return Integer.parseInt(speed.trim());
         }
 
-        // bad things happened, so default to the max speed available
-        return steps[steps.length - 1];
+        // bad things happened, so return negative
+        return -1
     }
 
     public static int getCurrentMinimum() {
-        int[] steps = getSpeedSteps();
-
         String speed = getFileContents(FILE_MIN_SPEED);
         if (speed != null) {
             Log.i(TAG, "Found minimum speed: [" + speed + "]");
             return Integer.parseInt(speed.trim());
         }
 
-        // bad things happened, so default to the min speed available
-        return steps[0];
+        // bad things happened, so return negative
+        return -1
     }
 
     private static String getFileContents(String filename) {
