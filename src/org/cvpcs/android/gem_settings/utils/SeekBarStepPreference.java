@@ -31,7 +31,10 @@ public class SeekBarStepPreference extends DialogPreference implements SeekBar.O
     private int mDefault = 0;
     private int[] mSteps;
     private int mValue = 0;
+    private int mInitialValue = 0;
     private boolean mValueSet = false;
+
+    private DisplayValueConverter mDisplayValueConverter = null;
 
     public SeekBarStepPreference(Context context, AttributeSet attrs) {
         super(context,attrs);
@@ -93,7 +96,11 @@ public class SeekBarStepPreference extends DialogPreference implements SeekBar.O
                 mValue = mDefault;
         }
 
-        String t = String.valueOf(mValue);
+        // store this for later
+        mInitialValue = mValue;
+
+        String t = String.valueOf((mDisplayValueConverter == null) ?
+                mValue : mDisplayValueConverter.convertValueForDisplay(mValue));
 
         if(mPrefix != null)
             t = mPrefix.concat(t);
@@ -106,6 +113,19 @@ public class SeekBarStepPreference extends DialogPreference implements SeekBar.O
         mSeekBar.setProgress(mValue - mSteps[0]);
 
         return layout;
+    }
+
+    @Override
+    protected void onDialogClosed(boolean positiveResult) {
+        if (positiveResult) {
+            if (shouldPersist())
+                persistInt(mValue);
+
+            callChangeListener(new Integer(mValue));
+        } else {
+            // reset our value
+            mValue = mInitialValue;
+        }
     }
 
     @Override
@@ -135,7 +155,8 @@ public class SeekBarStepPreference extends DialogPreference implements SeekBar.O
     {
         setValue(value + mSteps[0]);
 
-        String t = String.valueOf(mValue);
+        String t = String.valueOf((mDisplayValueConverter == null) ?
+                mValue : mDisplayValueConverter.convertValueForDisplay(mValue));
 
         if(mPrefix != null)
             t = mPrefix.concat(t);
@@ -143,11 +164,6 @@ public class SeekBarStepPreference extends DialogPreference implements SeekBar.O
             t = t.concat(mSuffix);
 
         mValueText.setText(t);
-
-        if (shouldPersist())
-            persistInt(mValue);
-
-        callChangeListener(new Integer(mValue));
     }
 
     public void onStartTrackingTouch(SeekBar seek) { }
@@ -194,5 +210,13 @@ public class SeekBarStepPreference extends DialogPreference implements SeekBar.O
         } else {
             return mSteps[mSteps.length - 1];
         }
+    }
+
+    public void setDisplayValueConverter(DisplayValueConverter dvc) {
+        mDisplayValueConverter = dvc;
+    }
+
+    public interface DisplayValueConverter {
+        public int convertValueForDisplay(int value);
     }
 }

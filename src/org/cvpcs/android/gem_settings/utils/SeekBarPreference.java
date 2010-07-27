@@ -10,8 +10,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.LinearLayout;
 
-public class SeekBarPreference extends DialogPreference implements SeekBar.OnSeekBarChangeListener
-{
+public class SeekBarPreference extends DialogPreference
+        implements SeekBar.OnSeekBarChangeListener {
     private static final String androidns="http://schemas.android.com/apk/res/android";
     private static final String cvpcsns="http://schemas.cvpcs.org/apk/res/android";
 
@@ -30,6 +30,8 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
     private int mMinimum = 0;
     private int mMaximum = 0;
     private int mValue = 0;
+
+    private DisplayValueConverter mDisplayValueConverter = null;
 
     public SeekBarPreference(Context context, AttributeSet attrs) {
         super(context,attrs);
@@ -106,7 +108,8 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
     {
         mValue = value + mMinimum;
 
-        String t = String.valueOf(mValue);
+        String t = String.valueOf((mDisplayValueConverter == null) ?
+                mValue : mDisplayValueConverter.convertValueForDisplay(mValue));
 
         if(mPrefix != null)
             t = mPrefix.concat(t);
@@ -131,4 +134,12 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
     }
 
     public int getValue() { return mValue; }
+
+    public void setDisplayValueConverter(DisplayValueConverter dvc) {
+        mDisplayValueConverter = dvc;
+    }
+
+    public interface DisplayValueConverter {
+        public int convertValueForDisplay(int value);
+    }
 }

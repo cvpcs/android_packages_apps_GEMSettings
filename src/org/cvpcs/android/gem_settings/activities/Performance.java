@@ -83,10 +83,14 @@ public class Performance extends PreferenceActivity
         mCPUFreqGovernorPref = (ListPreference)prefSet.findPreference(CPUFREQ_GOVERNOR);
         mCPUFreqGovernorPref.setEntries(CPUFreqStatus.getGovernors());
         mCPUFreqGovernorPref.setEntryValues(CPUFreqStatus.getGovernors());
+
+        SeekBarStepPreference.DisplayValueConverter mdvc = new HzToMhzDisplayValueConverter();
         mCPUFreqMinimumPref = (SeekBarStepPreference)prefSet.findPreference(CPUFREQ_MINIMUM);
+        mCPUFreqMinimumPref.setDisplayValueConverter(mdvc);
         mCPUFreqMinimumPref.setSteps(CPUFreqStatus.getSpeedSteps());
         mCPUFreqMinimumPref.setOnPreferenceChangeListener(this);
         mCPUFreqMaximumPref = (SeekBarStepPreference)prefSet.findPreference(CPUFREQ_MAXIMUM);
+        mCPUFreqMaximumPref.setDisplayValueConverter(mdvc);
         mCPUFreqMaximumPref.setSteps(CPUFreqStatus.getSpeedSteps());
         mCPUFreqMaximumPref.setOnPreferenceChangeListener(this);
 
@@ -111,13 +115,6 @@ public class Performance extends PreferenceActivity
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        if (preference == mCPUFreqMinimumPref) {
-            SystemProperties.set(CPUFREQ_MINIMUM_PROPERTY,
-                    Integer.toString(mCPUFreqMinimumPref.getValue()));
-        } else if (preference == mCPUFreqMaximumPref) {
-            SystemProperties.set(CPUFREQ_MAXIMUM_PROPERTY,
-                    Integer.toString(mCPUFreqMaximumPref.getValue()));
-        }
         return true;
     }
 
@@ -131,6 +128,12 @@ public class Performance extends PreferenceActivity
         } else if (CPUFREQ_GOVERNOR.equals(key)) {
             SystemProperties.set(CPUFREQ_GOVERNOR_PROPERTY,
                     mCPUFreqGovernorPref.getValue());
+        } else if (CPUFREQ_MINIMUM.equals(key)) {
+            SystemProperties.set(CPUFREQ_MINIMUM_PROPERTY,
+                    Integer.toString(mCPUFreqMinimumPref.getValue()));
+        } else if (CPUFREQ_MAXIMUM.equals(key)) {
+            SystemProperties.set(CPUFREQ_MAXIMUM_PROPERTY,
+                    Integer.toString(mCPUFreqMaximumPref.getValue()));
         }
     }
 
@@ -139,5 +142,12 @@ public class Performance extends PreferenceActivity
             mSwapAvailable = new File("/proc/swaps").exists() ? 1 : 0;
         }
         return mSwapAvailable > 0;
+    }
+
+    private class HzToMhzDisplayValueConverter
+            implements SeekBarStepPreference.DisplayValueConverter {
+        public int convertValueForDisplay(int value) {
+            return (value / 1000);
+        }
     }
 }
