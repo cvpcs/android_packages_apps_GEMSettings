@@ -33,7 +33,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 public class GEMSettings extends PreferenceActivity
-        implements SharedPreferences.OnSharedPreferenceChangeListener {
+        implements Preference.OnPreferenceChangeListener,
+        SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "GEMSettings";
 
     private static final String GENERAL_NOTIF_ADB = "display_adb_usb_debugging_notif";
@@ -57,24 +58,9 @@ public class GEMSettings extends PreferenceActivity
         mGeneralNotifLEDPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_NOTIF_LED);
 
         mGeneralAutoBrightMinLevelPref = (SeekBarStepPreference)prefSet.findPreference(GENERAL_AUTO_BRIGHT_MIN_LEVEL);
+        mGeneralAutoBrightMinLevelPref.setOnPreferenceChangeListener(this);
 
         prefSet.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-    }
-
-    public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
-        if (GENERAL_NOTIF_ADB.equals(key)) {
-            Settings.Secure.putInt(getContentResolver(),
-                    Settings.Secure.DISPLAY_ADB_USB_DEBUGGING_NOTIFICATION,
-                    mGeneralNotifADBPref.isChecked() ? 1 : 0);
-        } else if (GENERAL_NOTIF_LED.equals(key)) {
-            Settings.Secure.putInt(getContentResolver(),
-                    Settings.Secure.DISPLAY_NOTIFICATION_LED_SCREEN_ON,
-                    mGeneralNotifLEDPref.isChecked() ? 1 : 0);
-        } else if (GENERAL_AUTO_BRIGHT_MIN_LEVEL.equals(key)) {
-            Settings.Secure.putInt(getContentResolver(),
-                    Settings.Secure.AUTO_BRIGHTNESS_MINIMUM_BACKLIGHT_LEVEL,
-                    mGeneralAutoBrightMinLevelPref.getValue());
-        }
     }
 
     @Override
@@ -90,5 +76,26 @@ public class GEMSettings extends PreferenceActivity
         mGeneralAutoBrightMinLevelPref.setValue(Settings.Secure.getInt(
                 getContentResolver(),
                 Settings.Secure.AUTO_BRIGHTNESS_MINIMUM_BACKLIGHT_LEVEL, 16));
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        if (preference == mGeneralAutoBrightMinLevelPref) {
+            Settings.Secure.putInt(getContentResolver(),
+                    Settings.Secure.AUTO_BRIGHTNESS_MINIMUM_BACKLIGHT_LEVEL,
+                    mGeneralAutoBrightMinLevelPref.getValue());
+        }
+        return true;
+    }
+
+    public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
+        if (GENERAL_NOTIF_ADB.equals(key)) {
+            Settings.Secure.putInt(getContentResolver(),
+                    Settings.Secure.DISPLAY_ADB_USB_DEBUGGING_NOTIFICATION,
+                    mGeneralNotifADBPref.isChecked() ? 1 : 0);
+        } else if (GENERAL_NOTIF_LED.equals(key)) {
+            Settings.Secure.putInt(getContentResolver(),
+                    Settings.Secure.DISPLAY_NOTIFICATION_LED_SCREEN_ON,
+                    mGeneralNotifLEDPref.isChecked() ? 1 : 0);
+        }
     }
 }

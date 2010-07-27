@@ -25,7 +25,6 @@ import org.cvpcs.android.gem_settings.utils.ColorChangedListener;
 import android.app.ColorPickerDialog;
 import android.content.SharedPreferences;
 import android.preference.CheckBoxPreference;
-import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
@@ -34,13 +33,9 @@ import android.provider.Settings.SettingNotFoundException;
 import android.os.Bundle;
 import android.util.Log;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.util.Arrays;
-import java.util.List;
-
-public class UITweaks extends PreferenceActivity {
+public class UITweaks extends PreferenceActivity
+        implements Preference.OnPreferenceChangeListener,
+        SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "GEMSettings[UITweaks]";
 
     private static final String UI_COLOR_CLOCK = "color_clock";
@@ -111,6 +106,8 @@ public class UITweaks extends PreferenceActivity {
 
         mDisplayStatusBarClockPref = (CheckBoxPreference)prefSet.findPreference(UI_DISPLAY_STATUS_BAR_CLOCK);
         mDisplayBatteryPercentagePref = (CheckBoxPreference)prefSet.findPreference(UI_DISPLAY_BATTERY_PERCENTAGE);
+
+        prefSet.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -199,16 +196,6 @@ public class UITweaks extends PreferenceActivity {
                     readColor(Settings.System.COLOR_NOTIFICATION_ITEM_TIME, -16777216));
             cp.show();
         }
-        else if (preference == mDisplayStatusBarClockPref) {
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.DISPLAY_STATUS_BAR_CLOCK,
-                    mDisplayStatusBarClockPref.isChecked() ? 1 : 0);
-        }
-        else if (preference == mDisplayBatteryPercentagePref) {
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.DISPLAY_BATTERY_PERCENTAGE,
-                    mDisplayBatteryPercentagePref.isChecked() ? 1 : 0);
-        }
         return true;
     }
 
@@ -223,6 +210,23 @@ public class UITweaks extends PreferenceActivity {
         mDisplayBatteryPercentagePref.setChecked(Settings.System.getInt(
                 getContentResolver(),
                 Settings.System.DISPLAY_BATTERY_PERCENTAGE, 1) != 0);
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        return true;
+    }
+
+    public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
+        if (UI_DISPLAY_STATUS_BAR_CLOCK.equals(key)) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.DISPLAY_STATUS_BAR_CLOCK,
+                    mDisplayStatusBarClockPref.isChecked() ? 1 : 0);
+        }
+        else if (UI_DISPLAY_BATTERY_PERCENTAGE.equals(key)) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.DISPLAY_BATTERY_PERCENTAGE,
+                    mDisplayBatteryPercentagePref.isChecked() ? 1 : 0);
+        }
     }
 
     private int readColor(String setting, int def) {

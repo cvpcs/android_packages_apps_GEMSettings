@@ -36,7 +36,8 @@ import android.util.Log;
 import java.io.File;
 
 public class Performance extends PreferenceActivity
-        implements Preference.OnPreferenceChangeListener {
+        implements Preference.OnPreferenceChangeListener,
+        SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "GEMSettings[Performance]";
 
     private static final String SERVICE_COMPCACHE = "compcache";
@@ -60,8 +61,6 @@ public class Performance extends PreferenceActivity
 
     private int mSwapAvailable = -1;
 
-    private int[] mCPUFreqSpeeds = null;
-
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -84,27 +83,14 @@ public class Performance extends PreferenceActivity
         mCPUFreqGovernorPref = (ListPreference)prefSet.findPreference(CPUFREQ_GOVERNOR);
         mCPUFreqGovernorPref.setEntries(CPUFreqStatus.getGovernors());
         mCPUFreqGovernorPref.setEntryValues(CPUFreqStatus.getGovernors());
-        mCPUFreqGovernorPref.setOnPreferenceChangeListener(this);
         mCPUFreqMinimumPref = (SeekBarStepPreference)prefSet.findPreference(CPUFREQ_MINIMUM);
         mCPUFreqMinimumPref.setSteps(CPUFreqStatus.getSpeedSteps());
         mCPUFreqMinimumPref.setOnPreferenceChangeListener(this);
         mCPUFreqMaximumPref = (SeekBarStepPreference)prefSet.findPreference(CPUFREQ_MAXIMUM);
         mCPUFreqMaximumPref.setSteps(CPUFreqStatus.getSpeedSteps());
         mCPUFreqMaximumPref.setOnPreferenceChangeListener(this);
-    }
 
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mServiceCompcachePref) {
-            SystemProperties.set(SERVICE_COMPCACHE_PROPERTY,
-                    mServiceCompcachePref.isChecked() ? "1" : "0");
-            return true;
-        } else if (preference == mCPUFreqEnablePref) {
-            SystemProperties.set(CPUFREQ_ENABLE_PROPERTY,
-                    mServiceCompcachePref.isChecked() ? "1" : "0");
-            return true;
-        }
-        return false;
+        prefSet.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -125,20 +111,27 @@ public class Performance extends PreferenceActivity
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        if (preference == mCPUFreqGovernorPref) {
-            SystemProperties.set(CPUFREQ_GOVERNOR_PROPERTY,
-                    mCPUFreqGovernorPref.getValue());
-            return true;
-        } else if (preference == mCPUFreqMinimumPref) {
+        if (preference == mCPUFreqMinimumPref) {
             SystemProperties.set(CPUFREQ_MINIMUM_PROPERTY,
                     Integer.toString(mCPUFreqMinimumPref.getValue()));
-            return true;
         } else if (preference == mCPUFreqMaximumPref) {
             SystemProperties.set(CPUFREQ_MAXIMUM_PROPERTY,
                     Integer.toString(mCPUFreqMaximumPref.getValue()));
-            return true;
         }
-        return false;
+        return true;
+    }
+
+    public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
+        if (SERVICE_COMPCACHE.equals(key)) {
+            SystemProperties.set(SERVICE_COMPCACHE_PROPERTY,
+                    mServiceCompcachePref.isChecked() ? "1" : "0");
+        } else if (CPUFREQ_ENABLE.equals(key)) {
+            SystemProperties.set(CPUFREQ_ENABLE_PROPERTY,
+                    mCPUFreqEnablePref.isChecked() ? "1" : "0");
+        } else if (CPUFREQ_GOVERNOR.equals(key)) {
+            SystemProperties.set(CPUFREQ_GOVERNOR_PROPERTY,
+                    mCPUFreqGovernorPref.getValue());
+        }
     }
 
     private boolean isSwapAvailable() {
