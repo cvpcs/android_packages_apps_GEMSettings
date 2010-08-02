@@ -22,23 +22,17 @@
     <PreferenceCategory
         android:title="@string/title_general">
  
-        <PreferenceScreen
-            android:title="@string/title_general_notif"
-            android:summary="@string/summary_general_notif">
+        <CheckBoxPreference
+            android:key="display_adb_usb_debugging_notif"
+            android:title="@string/title_general_display_adb_usb_debugging_notif"
+            android:summaryOn="@string/summary_on_general_display_adb_usb_debugging_notif"
+            android:summaryOff="@string/summary_off_general_display_adb_usb_debugging_notif" />
 
-            <CheckBoxPreference
-                android:key="display_adb_usb_debugging_notif"
-                android:title="@string/title_general_notif_display_adb_usb_debugging_notif"
-                android:summaryOn="@string/summary_on_general_notif_display_adb_usb_debugging_notif"
-                android:summaryOff="@string/summary_off_general_notif_display_adb_usb_debugging_notif" />
-
-            <CheckBoxPreference
-                android:key="display_notification_led_screen_on"
-                android:title="@string/title_general_notif_display_notification_led_screen_on"
-                android:summaryOn="@string/summary_on_general_notif_display_notification_led_screen_on"
-                android:summaryOff="@string/summary_off_general_notif_display_notification_led_screen_on" />
-
-        </PreferenceScreen>
+        <CheckBoxPreference
+            android:key="display_notification_led_screen_on"
+            android:title="@string/title_general_display_notification_led_screen_on"
+            android:summaryOn="@string/summary_on_general_display_notification_led_screen_on"
+            android:summaryOff="@string/summary_off_general_display_notification_led_screen_on" />
 
         <org.cvpcs.android.gem_settings.utils.SeekBarStepPreference
             android:key="auto_brightness_minimum_backlight_level"
@@ -48,6 +42,13 @@
             cvpcs:prefixText="Level "
             cvpcs:defaultValue="16"
             cvpcs:steps="@array/steps_general_auto_brightness_minimum_backlight_level" />
+
+        <ListPreference
+            android:key="display_lockscreen_music_controls"
+            android:title="@string/title_display_lockscreen_music_controls"
+            android:summary="@string/summary_display_lockscreen_music_controls"
+            android:entries="@array/entries_display_lockscreen_music_controls"
+            android:entryValues="@array/entryValues_display_lockscreen_music_controls" />
 
     </PreferenceCategory>
 

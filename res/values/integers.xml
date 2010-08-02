@@ -20,13 +20,4 @@
 <resources>
     <integer name="color_black">-16777216</integer>
     <integer name="color_white">-1</integer>
-
-    <integer-array name="steps_general_auto_brightness_minimum_backlight_level">
-        <item>2</item>
-        <item>5</item>
-        <item>7</item>
-        <item>10</item>
-        <item>13</item>
-        <item>16</item>
-    </integer-array>
 </resources>

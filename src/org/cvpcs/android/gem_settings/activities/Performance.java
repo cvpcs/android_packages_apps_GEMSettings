@@ -85,14 +85,14 @@ public class Performance extends PreferenceActivity
         mCPUFreqGovernorPref.setEntryValues(CPUFreqStatus.getGovernors());
 
         SeekBarStepPreference.DisplayValueConverter mdvc = new HzToMhzDisplayValueConverter();
+
         mCPUFreqMinimumPref = (SeekBarStepPreference)prefSet.findPreference(CPUFREQ_MINIMUM);
         mCPUFreqMinimumPref.setDisplayValueConverter(mdvc);
         mCPUFreqMinimumPref.setSteps(CPUFreqStatus.getSpeedSteps());
-        mCPUFreqMinimumPref.setOnPreferenceChangeListener(this);
+
         mCPUFreqMaximumPref = (SeekBarStepPreference)prefSet.findPreference(CPUFREQ_MAXIMUM);
         mCPUFreqMaximumPref.setDisplayValueConverter(mdvc);
         mCPUFreqMaximumPref.setSteps(CPUFreqStatus.getSpeedSteps());
-        mCPUFreqMaximumPref.setOnPreferenceChangeListener(this);
 
         prefSet.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
