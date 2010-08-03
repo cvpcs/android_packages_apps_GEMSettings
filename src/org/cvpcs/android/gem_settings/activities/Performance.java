@@ -1,4 +1,4 @@
-/* //device/apps/Settings/src/com/android/settings/Keyguard.java
+/*
 **
 ** Copyright 2006, The Android Open Source Project
 **
@@ -32,6 +32,7 @@ import android.provider.Settings.SettingNotFoundException;
 import android.os.Bundle;
 import android.os.SystemProperties;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -131,9 +132,11 @@ public class Performance extends PreferenceActivity
         } else if (CPUFREQ_MINIMUM.equals(key)) {
             SystemProperties.set(CPUFREQ_MINIMUM_PROPERTY,
                     Integer.toString(mCPUFreqMinimumPref.getValue()));
+            checkCPUSpeeds();
         } else if (CPUFREQ_MAXIMUM.equals(key)) {
             SystemProperties.set(CPUFREQ_MAXIMUM_PROPERTY,
                     Integer.toString(mCPUFreqMaximumPref.getValue()));
+            checkCPUSpeeds();
         }
     }
 
@@ -142,6 +145,15 @@ public class Performance extends PreferenceActivity
             mSwapAvailable = new File("/proc/swaps").exists() ? 1 : 0;
         }
         return mSwapAvailable > 0;
+    }
+
+    private void checkCPUSpeeds() {
+        int min = mCPUFreqMinimumPref.getValue();
+        int max = mCPUFreqMaximumPref.getValue();
+
+        if (min > max) {
+            Toast.makeText(this, "CPU Min > Max, Min will be leveled off at the max speed upon boot.", Toast.LENGTH_LONG).show();
+        }
     }
 
     private class HzToMhzDisplayValueConverter
