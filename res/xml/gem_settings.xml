@@ -60,6 +60,15 @@
             android:targetClass="org.cvpcs.android.gem_settings.activities.Performance" />
     </PreferenceScreen>
 
+    <PreferenceScreen android:key="dspmanager"
+        android:title="@string/title_dspmanager"
+        android:summary="@string/summary_dspmanager">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="com.bel.android.dspmanager"
+            android:targetClass="com.bel.android.dspmanager.DSPManager" />
+    </PreferenceScreen>
+
     <PreferenceScreen android:key="ui_tweaks"
         android:title="@string/title_ui_tweaks"
         android:summary="@string/summary_ui_tweaks">

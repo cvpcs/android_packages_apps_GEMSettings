@@ -59,6 +59,10 @@
 
             <string name="title_cpufreq_maximum">Maximum Overclocking Speed</string>
 
+    <!-- Section devoted to DSP management -->
+    <string name="title_dspmanager">DSP Manager</string>
+    <string name="summary_dspmanager">Manage audio signal processing</string>
+
     <!-- Section devoted to user interface tweaking -->
     <string name="title_ui_tweaks">User interface tweaks</string>
     <string name="summary_ui_tweaks">Requires reboot</string>
