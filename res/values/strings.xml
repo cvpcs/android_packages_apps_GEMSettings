@@ -39,7 +39,7 @@
 
     <!-- Section devoted to runnable performance enhancements -->
     <string name="title_performance">Performance</string>
-    <string name="summary_performance">Verious services/enhancements to the system</string>
+    <string name="summary_performance">Various services/enhancements to the system</string>
 
         <string name="title_services">Services</string>
 
