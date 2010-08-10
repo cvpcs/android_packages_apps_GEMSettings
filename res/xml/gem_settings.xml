@@ -60,13 +60,13 @@
             android:targetClass="org.cvpcs.android.gem_settings.activities.Performance" />
     </PreferenceScreen>
 
-    <PreferenceScreen android:key="dspmanager"
-        android:title="@string/title_dspmanager"
-        android:summary="@string/summary_dspmanager">
+    <PreferenceScreen android:key="audio"
+        android:title="@string/title_audio"
+        android:summary="@string/summary_audio">
         <intent
             android:action="android.intent.action.MAIN"
-            android:targetPackage="com.bel.android.dspmanager"
-            android:targetClass="com.bel.android.dspmanager.DSPManager" />
+            android:targetPackage="org.cvpcs.android.gem_settings"
+            android:targetClass="org.cvpcs.android.gem_settings.activities.Audio" />
     </PreferenceScreen>
 
     <PreferenceScreen android:key="ui_tweaks"

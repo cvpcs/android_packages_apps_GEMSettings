@@ -31,9 +31,6 @@
         <string name="summary_on_general_display_notification_led_screen_on">Notification LED will blink while the screen is on</string>
         <string name="summary_off_general_display_notification_led_screen_on">Notification LED will not blink while the screen is on</string>
 
-        <string name="title_display_lockscreen_music_controls">Lockscreen Music Controls</string>
-        <string name="summary_display_lockscreen_music_controls">When the lockscreen music controls will be displayed</string>
-
         <string name="title_general_auto_brightness_minimum_backlight_level">Auto-brightness minimum level</string>
         <string name="summary_general_auto_brightness_minimum_backlight_level">Set the lowest backlight level for auto-brightness mode</string>
 
@@ -59,9 +56,19 @@
 
             <string name="title_cpufreq_maximum">Maximum Overclocking Speed</string>
 
-    <!-- Section devoted to DSP management -->
-    <string name="title_dspmanager">DSP Manager</string>
-    <string name="summary_dspmanager">Manage audio signal processing</string>
+    <!-- Section devoted to audio tweaks -->
+    <string name="title_audio">Audio</string>
+    <string name="summary_audio">Various audio features/enhancements</string>
+
+        <string name="title_volume_button_music_controls">Volume Button Music Controls</string>
+        <string name="summary_on_volume_button_music_controls">Volume buttons will seek through music tracks</string>
+        <string name="summary_off_volume_button_music_controls">Volume buttons will not seek through music tracks</string>
+
+        <string name="title_display_lockscreen_music_controls">Lockscreen Music Controls</string>
+        <string name="summary_display_lockscreen_music_controls">When the lockscreen music controls will be displayed</string>
+
+        <string name="title_dspmanager">DSP Manager</string>
+        <string name="summary_dspmanager">Manage audio signal processing</string>
 
     <!-- Section devoted to user interface tweaking -->
     <string name="title_ui_tweaks">User interface tweaks</string>
