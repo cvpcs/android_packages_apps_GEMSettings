@@ -38,7 +38,7 @@
         <intent
             android:action="android.intent.action.MAIN"
             android:targetPackage="com.bel.android.dspmanager"
-            android:targetClass="com.bel.android.dspmanager.DSPManager" />
+            android:targetClass="com.bel.android.dspmanager.activity.DSPManager" />
     </PreferenceScreen>
 
 </PreferenceScreen>
