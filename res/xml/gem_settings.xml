@@ -43,13 +43,6 @@
             cvpcs:defaultValue="16"
             cvpcs:steps="@array/steps_general_auto_brightness_minimum_backlight_level" />
 
-        <ListPreference
-            android:key="display_lockscreen_music_controls"
-            android:title="@string/title_display_lockscreen_music_controls"
-            android:summary="@string/summary_display_lockscreen_music_controls"
-            android:entries="@array/entries_display_lockscreen_music_controls"
-            android:entryValues="@array/entryValues_display_lockscreen_music_controls" />
-
     </PreferenceCategory>
 
     <PreferenceScreen android:key="performance"
