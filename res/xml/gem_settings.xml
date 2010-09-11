@@ -34,6 +34,12 @@
             android:summaryOn="@string/summary_on_general_display_notification_led_screen_on"
             android:summaryOff="@string/summary_off_general_display_notification_led_screen_on" />
 
+        <CheckBoxPreference
+            android:key="use_rotary_lockscreen"
+            android:title="@string/title_general_use_rotary_lockscreen"
+            android:summaryOn="@string/summary_on_general_use_rotary_lockscreen"
+            android:summaryOff="@string/summary_off_general_use_rotary_lockscreen" />
+
         <org.cvpcs.android.gem_settings.utils.SeekBarStepPreference
             android:key="auto_brightness_minimum_backlight_level"
             android:title="@string/title_general_auto_brightness_minimum_backlight_level"
