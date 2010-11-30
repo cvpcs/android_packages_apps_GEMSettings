@@ -76,4 +76,13 @@
             android:targetClass="org.cvpcs.android.gem_settings.activities.UITweaks" />
     </PreferenceScreen>
 
+    <PreferenceScreen android:key="cwiidconfig"
+        android:title="@string/title_cwiidconfig"
+        android:summary="@string/summary_cwiidconfig">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="org.cvpcs.android.cwiidconfig"
+            android:targetClass="org.cvpcs.android.cwiidconfig.activity.CWiiDConfig" />
+    </PreferenceScreen>
+
 </PreferenceScreen>

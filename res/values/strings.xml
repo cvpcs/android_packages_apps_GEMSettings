@@ -108,4 +108,8 @@
             <string name="summary_on_ui_tweaks_display_battery_percentage">Battery percentage is displayed over the battery icon</string>
             <string name="summary_off_ui_tweaks_display_battery_percentage">Battery percentage is not displayed over the battery icon</string>
 
+    <!-- Call out to CWiiD Configuration Utility -->
+    <string name="title_cwiidconfig">CWiiD Configuration</string>
+    <string name="summary_cwiidconfig">Manage WiiMote connectivity settings</string>
+
 </resources>
