@@ -16,7 +16,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="org.cvpcs.android.gem_settings"
-        android:sharedUserId="android.uid.system">
+        android:sharedUserId="android.uid.gem">
 
     <uses-sdk android:minSdkVersion="8" />
 
