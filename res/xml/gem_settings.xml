@@ -85,4 +85,13 @@
             android:targetClass="org.cvpcs.android.cwiidconfig.activity.CWiiDConfig" />
     </PreferenceScreen>
 
+    <PreferenceScreen android:key="gemnotifications"
+        android:title="@string/title_gemnotifications"
+        android:summary="@string/summary_gemnotifications">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="org.cvpcs.android.gemnotifications"
+            android:targetClass="org.cvpcs.android.gemnotifications.activities.GEMNotifications" />
+    </PreferenceScreen>
+
 </PreferenceScreen>

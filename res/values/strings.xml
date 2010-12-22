@@ -112,4 +112,6 @@
     <string name="title_cwiidconfig">CWiiD Configuration</string>
     <string name="summary_cwiidconfig">Manage WiiMote connectivity settings</string>
 
+    <string name="title_gemnotifications">GEM Notifications</string>
+    <string name="summary_gemnotifications">Register and configure push notifications</string>
 </resources>
