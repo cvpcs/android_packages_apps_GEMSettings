@@ -49,6 +49,12 @@
             cvpcs:defaultValue="16"
             cvpcs:steps="@array/steps_general_auto_brightness_minimum_backlight_level" />
 
+        <CheckBoxPreference
+            android:key="kill_app_longpress_back"
+            android:title="@string/title_general_kill_app_longpress_back"
+            android:summaryOn="@string/summary_on_general_kill_app_longpress_back"
+            android:summaryOff="@string/summary_off_general_kill_app_longpress_back" />
+
     </PreferenceCategory>
 
     <PreferenceScreen android:key="performance"

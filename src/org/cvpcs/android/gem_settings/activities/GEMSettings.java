@@ -42,11 +42,15 @@ public class GEMSettings extends PreferenceActivity
 
     private static final String GENERAL_AUTO_BRIGHT_MIN_LEVEL = "auto_brightness_minimum_backlight_level";
 
+    private static final String GENERAL_KILL_APP = "kill_app_longpress_back";
+
     private CheckBoxPreference mGeneralNotifADBPref;
     private CheckBoxPreference mGeneralNotifLEDPref;
     private CheckBoxPreference mGeneralUseRotaryLockPref;
 
     private SeekBarStepPreference mGeneralAutoBrightMinLevelPref;
+
+    private CheckBoxPreference mGeneralKillAppPref;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -61,6 +65,8 @@ public class GEMSettings extends PreferenceActivity
 
         mGeneralAutoBrightMinLevelPref = (SeekBarStepPreference)prefSet.findPreference(GENERAL_AUTO_BRIGHT_MIN_LEVEL);
         mGeneralAutoBrightMinLevelPref.setOnPreferenceChangeListener(this);
+
+        mGeneralKillAppPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_KILL_APP);
 
         prefSet.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
@@ -81,6 +87,9 @@ public class GEMSettings extends PreferenceActivity
         mGeneralAutoBrightMinLevelPref.setValue(Settings.Secure.getInt(
                 getContentResolver(),
                 Settings.Secure.AUTO_BRIGHTNESS_MINIMUM_BACKLIGHT_LEVEL, 16));
+        mGeneralKillAppPref.setChecked(Settings.Secure.getInt(
+                getContentResolver(),
+                Settings.Secure.KILL_APP_LONGPRESS_BACK, 0) != 0);
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -104,6 +113,10 @@ public class GEMSettings extends PreferenceActivity
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.AUTO_BRIGHTNESS_MINIMUM_BACKLIGHT_LEVEL,
                     mGeneralAutoBrightMinLevelPref.getValue());
+        } else if (GENERAL_KILL_APP.equals(key)) {
+            Settings.Secure.putInt(getContentResolver(),
+                    Settings.Secure.KILL_APP_LONGPRESS_BACK,
+                    mGeneralKillAppPref.isChecked() ? 1 : 0);
         }
     }
 }

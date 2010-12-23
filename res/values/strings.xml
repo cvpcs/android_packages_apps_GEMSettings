@@ -38,6 +38,10 @@
         <string name="title_general_auto_brightness_minimum_backlight_level">Auto-brightness minimum level</string>
         <string name="summary_general_auto_brightness_minimum_backlight_level">Set the lowest backlight level for auto-brightness mode</string>
 
+        <string name="title_general_kill_app_longpress_back">Kill app longpress back</string>
+        <string name="summary_on_general_kill_app_longpress_back">The foreground app will be killed when longpressing back</string>
+        <string name="summary_off_general_kill_app_longpress_back">The foreground app will not be killed when longpressing back</string>
+
     <!-- Section devoted to runnable performance enhancements -->
     <string name="title_performance">Performance</string>
     <string name="summary_performance">Various services/enhancements to the system</string>
