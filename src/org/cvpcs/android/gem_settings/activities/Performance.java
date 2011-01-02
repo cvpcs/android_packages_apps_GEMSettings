@@ -60,7 +60,10 @@ public class Performance extends PreferenceActivity
     private SeekBarStepPreference mCPUFreqMinimumPref;
     private SeekBarStepPreference mCPUFreqMaximumPref;
 
+    private static final File SWAPS_FILE = new File("/proc/swaps");
+    private static final File RAMZSWAP_FILE = new File("/system/lib/modules/ramzswap.ko");
     private int mSwapAvailable = -1;
+    private int mRamzSwapAvailable = -1;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -70,7 +73,7 @@ public class Performance extends PreferenceActivity
         final PreferenceScreen prefSet = getPreferenceScreen();
 
         mServiceCompcachePref = (CheckBoxPreference)prefSet.findPreference(SERVICE_COMPCACHE);
-        if(!isSwapAvailable()) {
+        if(!isCompcacheAvailable()) {
             // disable compcache but display a message so people know why it's not working
             mServiceCompcachePref.setEnabled(false);
             mServiceCompcachePref.setChecked(false);
@@ -140,11 +143,16 @@ public class Performance extends PreferenceActivity
         }
     }
 
-    private boolean isSwapAvailable() {
+    private boolean isCompcacheAvailable() {
         if (mSwapAvailable < 0) {
-            mSwapAvailable = new File("/proc/swaps").exists() ? 1 : 0;
+            mSwapAvailable = SWAPS_FILE.exists() ? 1 : 0;
         }
-        return mSwapAvailable > 0;
+
+        if (mRamzSwapAvailable < 0) {
+            mRamzSwapAvailable = RAMZSWAP_FILE.exists() ? 1 : 0;
+        }
+
+        return (mSwapAvailable > 0) && (mRamzSwapAvailable > 0);
     }
 
     private void checkCPUSpeeds() {
