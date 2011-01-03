@@ -19,29 +19,7 @@
 -->
 <resources>
     <string name="app_label">GEM Settings</string>
-
-    <!-- Section devoted to general user settings -->
-    <string name="title_general">General</string>
-
-        <string name="title_general_display_adb_usb_debugging_notif">Display USB debugging</string>
-        <string name="summary_on_general_display_adb_usb_debugging_notif">The USB debugging notification will be displayed</string>
-        <string name="summary_off_general_display_adb_usb_debugging_notif">The USB debugging notification will not be displayed</string>
-
-        <string name="title_general_display_notification_led_screen_on">LED while screen on</string>
-        <string name="summary_on_general_display_notification_led_screen_on">Notification LED will blink while the screen is on</string>
-        <string name="summary_off_general_display_notification_led_screen_on">Notification LED will not blink while the screen is on</string>
-
-        <string name="title_general_use_rotary_lockscreen">Use Rotary Lockscreen</string>
-        <string name="summary_on_general_use_rotary_lockscreen">Rotary lockscreen will be used</string>
-        <string name="summary_off_general_use_rotary_lockscreen">Rotary lockscreen will not be used</string>
-
-        <string name="title_general_auto_brightness_minimum_backlight_level">Auto-brightness minimum level</string>
-        <string name="summary_general_auto_brightness_minimum_backlight_level">Set the lowest backlight level for auto-brightness mode</string>
-
-        <string name="title_general_kill_app_longpress_back">Kill app longpress back</string>
-        <string name="summary_on_general_kill_app_longpress_back">The foreground app will be killed when longpressing back</string>
-        <string name="summary_off_general_kill_app_longpress_back">The foreground app will not be killed when longpressing back</string>
-
+    
     <!-- Section devoted to runnable performance enhancements -->
     <string name="title_performance">Performance</string>
     <string name="summary_performance">Various services/enhancements to the system</string>
@@ -78,6 +56,25 @@
         <string name="title_dspmanager">DSP Manager</string>
         <string name="summary_dspmanager">Manage audio signal processing</string>
 
+    <!-- Provides UI for some Scriptybox functions -->
+    <string name="scriptybox">Scriptybox</string>
+    <string name="summary_scriptybox">Scripts</string>
+	
+	<string name="title_adblock">Adblock</string>
+	<string name="summary_on_adblock">Most ads will be blocked</string>
+	<string name="summary_off_adblock">Most ads will not be blocked</string>
+
+	<string name="title_camera_sounds">Turn Off Camera Sounds</string>
+	<string name="summary_on_camera_sounds">Camera sounds will be stopped from playing</string>
+	<string name="summary_off_camera_sounds">Camera sounds will not be stopped from playing</string>
+
+	<string name="title_use_rotary_lockscreen">Rotary Lockscreen</string>
+        <string name="summary_on_use_rotary_lockscreen">Rotary lockscreen will be used</string>
+        <string name="summary_off_use_rotary_lockscreen">Rotary lockscreen will not be used</string>
+
+	<string name="title_remove_apk">Remove System Apps</string>
+	<string name="summary_remove_apk">Delete Unwanted System Apps</string>	
+
     <!-- Section devoted to user interface tweaking -->
     <string name="title_ui_tweaks">User interface tweaks</string>
     <string name="summary_ui_tweaks">Requires reboot</string>
@@ -112,10 +109,39 @@
             <string name="summary_on_ui_tweaks_display_battery_percentage">Battery percentage is displayed over the battery icon</string>
             <string name="summary_off_ui_tweaks_display_battery_percentage">Battery percentage is not displayed over the battery icon</string>
 
-    <!-- Call out to CWiiD Configuration Utility -->
-    <string name="title_cwiidconfig">CWiiD Configuration</string>
-    <string name="summary_cwiidconfig">Manage WiiMote connectivity settings</string>
+    <!-- Accesses Dev Tools and Spare Parts -->
+    <string name="title_tools">Other Tools</string>
+    <string name="summary_tools">Miscellaneous Other Options</string>
+	
+	<string name="title_spare_parts">Spare Parts</strings>
+	<string name="summary_spare_parts">Various minor device tweaks</strings>
+	
+	<string name="title_dev_tools">Dev Tools</strings>
+	<string name="summary_dev_tools">Miscellaneous tools for developers</strings>	
+	
+    <!-- Other options not fit for other categories -->
+    <string name="title_extras">Extras</string>
+    <string name="summary_extras">Extra little tweaks</string>
 
+	<string name="title_display_adb_usb_debugging_notif">Display USB debugging</string>
+        <string name="summary_on_display_adb_usb_debugging_notif">The USB debugging notification will be displayed</string>
+        <string name="summary_off_display_adb_usb_debugging_notif">The USB debugging notification will not be displayed</string>
+
+	<string name="title_display_notification_led_screen_on">LED while screen on</string>
+        <string name="summary_on_display_notification_led_screen_on">Notification LED will blink while the screen is on</string>
+        <string name="summary_off_display_notification_led_screen_on">Notification LED will not blink while the screen is on</string>
+	
+	<string name="title_auto_brightness_minimum_backlight_level">Auto-brightness minimum level</string>
+        <string name="summary_auto_brightness_minimum_backlight_level">Set the lowest backlight level for auto-brightness mode</string>
+
+	<string name="title_kill_app_longpress_back">Kill app longpress back</string>
+        <string name="summary_on_kill_app_longpress_back">The foreground app will be killed when longpressing back</string>
+        <string name="summary_off_kill_app_longpress_back">The foreground app will not be killed when longpressing back</string>
+
+	<string name="title_cwiidconfig">CWiiD Configuration</string>
+	<string name="summary_cwiidconfig">Manage WiiMote connectivity settings</string>
+
+    <!-- Settings for push update notifications -->
     <string name="title_gemnotifications">GEM Notifications</string>
     <string name="summary_gemnotifications">Register and configure push notifications</string>
 </resources>
