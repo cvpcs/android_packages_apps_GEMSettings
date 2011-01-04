@@ -20,41 +20,13 @@
                   xmlns:cvpcs="http://schemas.cvpcs.org/apk/res/android">
 
     <PreferenceCategory
-        android:title="@string/title_general">
+        android:title="General">
  
         <CheckBoxPreference
-            android:key="display_adb_usb_debugging_notif"
-            android:title="@string/title_general_display_adb_usb_debugging_notif"
-            android:summaryOn="@string/summary_on_general_display_adb_usb_debugging_notif"
-            android:summaryOff="@string/summary_off_general_display_adb_usb_debugging_notif" />
-
-        <CheckBoxPreference
-            android:key="display_notification_led_screen_on"
-            android:title="@string/title_general_display_notification_led_screen_on"
-            android:summaryOn="@string/summary_on_general_display_notification_led_screen_on"
-            android:summaryOff="@string/summary_off_general_display_notification_led_screen_on" />
-
-        <CheckBoxPreference
             android:key="use_rotary_lockscreen"
-            android:title="@string/title_general_use_rotary_lockscreen"
-            android:summaryOn="@string/summary_on_general_use_rotary_lockscreen"
-            android:summaryOff="@string/summary_off_general_use_rotary_lockscreen" />
-
-        <org.cvpcs.android.gem_settings.utils.SeekBarStepPreference
-            android:key="auto_brightness_minimum_backlight_level"
-            android:title="@string/title_general_auto_brightness_minimum_backlight_level"
-            android:summary="@string/summary_general_auto_brightness_minimum_backlight_level"
-            cvpcs:dialogMessage="Auto brightness minimum"
-            cvpcs:prefixText="Level "
-            cvpcs:defaultValue="16"
-            cvpcs:steps="@array/steps_general_auto_brightness_minimum_backlight_level" />
-
-        <CheckBoxPreference
-            android:key="kill_app_longpress_back"
-            android:title="@string/title_general_kill_app_longpress_back"
-            android:summaryOn="@string/summary_on_general_kill_app_longpress_back"
-            android:summaryOff="@string/summary_off_general_kill_app_longpress_back" />
-
+            android:title="@string/title_use_rotary_lockscreen"
+            android:summaryOn="@string/summary_on_use_rotary_lockscreen"
+            android:summaryOff="@string/summary_off_use_rotary_lockscreen" />
     </PreferenceCategory>
 
     <PreferenceScreen android:key="performance"
@@ -82,13 +54,13 @@
             android:targetClass="org.cvpcs.android.gem_settings.activities.UITweaks" />
     </PreferenceScreen>
 
-    <PreferenceScreen android:key="cwiidconfig"
-        android:title="@string/title_cwiidconfig"
-        android:summary="@string/summary_cwiidconfig">
-        <intent
-            android:action="android.intent.action.MAIN"
-            android:targetPackage="org.cvpcs.android.cwiidconfig"
-            android:targetClass="org.cvpcs.android.cwiidconfig.activity.CWiiDConfig" />
+    <PreferenceScreen android:key="extras"
+	android:title="@string/title_extras"
+	android:summary="@string/summary_extras">
+	<intent 
+	    android:action="android.intent.action.MAIN"
+	    android:targetPackage="org.cvpcs.android.gem_settings"
+	    android:targetClass="org.cvpcs.android.gem_settings.activities.Extras"  />
     </PreferenceScreen>
 
     <PreferenceScreen android:key="gemnotifications"

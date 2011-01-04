@@ -36,21 +36,10 @@ public class GEMSettings extends PreferenceActivity
         SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "GEMSettings";
 
-    private static final String GENERAL_NOTIF_ADB = "display_adb_usb_debugging_notif";
-    private static final String GENERAL_NOTIF_LED = "display_notification_led_screen_on";
     private static final String GENERAL_ROTARY_LOCK = "use_rotary_lockscreen";
 
-    private static final String GENERAL_AUTO_BRIGHT_MIN_LEVEL = "auto_brightness_minimum_backlight_level";
-
-    private static final String GENERAL_KILL_APP = "kill_app_longpress_back";
-
-    private CheckBoxPreference mGeneralNotifADBPref;
-    private CheckBoxPreference mGeneralNotifLEDPref;
     private CheckBoxPreference mGeneralUseRotaryLockPref;
 
-    private SeekBarStepPreference mGeneralAutoBrightMinLevelPref;
-
-    private CheckBoxPreference mGeneralKillAppPref;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -59,14 +48,7 @@ public class GEMSettings extends PreferenceActivity
 
         final PreferenceScreen prefSet = getPreferenceScreen();
 
-        mGeneralNotifADBPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_NOTIF_ADB);
-        mGeneralNotifLEDPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_NOTIF_LED);
         mGeneralUseRotaryLockPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_ROTARY_LOCK);
-
-        mGeneralAutoBrightMinLevelPref = (SeekBarStepPreference)prefSet.findPreference(GENERAL_AUTO_BRIGHT_MIN_LEVEL);
-        mGeneralAutoBrightMinLevelPref.setOnPreferenceChangeListener(this);
-
-        mGeneralKillAppPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_KILL_APP);
 
         prefSet.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
@@ -75,21 +57,9 @@ public class GEMSettings extends PreferenceActivity
     public void onResume() {
         super.onResume();
 
-        mGeneralNotifLEDPref.setChecked(Settings.Secure.getInt(
-                getContentResolver(),
-                Settings.Secure.DISPLAY_NOTIFICATION_LED_SCREEN_ON, 0) != 0);
-        mGeneralNotifADBPref.setChecked(Settings.Secure.getInt(
-                getContentResolver(),
-                Settings.Secure.DISPLAY_ADB_USB_DEBUGGING_NOTIFICATION, 1) != 0);
         mGeneralUseRotaryLockPref.setChecked(Settings.System.getInt(
                 getContentResolver(),
                 Settings.System.USE_ROTARY_LOCKSCREEN, 0) != 0);
-        mGeneralAutoBrightMinLevelPref.setValue(Settings.Secure.getInt(
-                getContentResolver(),
-                Settings.Secure.AUTO_BRIGHTNESS_MINIMUM_BACKLIGHT_LEVEL, 16));
-        mGeneralKillAppPref.setChecked(Settings.Secure.getInt(
-                getContentResolver(),
-                Settings.Secure.KILL_APP_LONGPRESS_BACK, 0) != 0);
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -97,26 +67,10 @@ public class GEMSettings extends PreferenceActivity
     }
 
     public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
-        if (GENERAL_NOTIF_ADB.equals(key)) {
-            Settings.Secure.putInt(getContentResolver(),
-                    Settings.Secure.DISPLAY_ADB_USB_DEBUGGING_NOTIFICATION,
-                    mGeneralNotifADBPref.isChecked() ? 1 : 0);
-        } else if (GENERAL_NOTIF_LED.equals(key)) {
-            Settings.Secure.putInt(getContentResolver(),
-                    Settings.Secure.DISPLAY_NOTIFICATION_LED_SCREEN_ON,
-                    mGeneralNotifLEDPref.isChecked() ? 1 : 0);
-        } else if (GENERAL_ROTARY_LOCK.equals(key)) {
+          if (GENERAL_ROTARY_LOCK.equals(key)) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.USE_ROTARY_LOCKSCREEN,
                     mGeneralUseRotaryLockPref.isChecked() ? 1 : 0);
-        } else if (GENERAL_AUTO_BRIGHT_MIN_LEVEL.equals(key)) {
-            Settings.Secure.putInt(getContentResolver(),
-                    Settings.Secure.AUTO_BRIGHTNESS_MINIMUM_BACKLIGHT_LEVEL,
-                    mGeneralAutoBrightMinLevelPref.getValue());
-        } else if (GENERAL_KILL_APP.equals(key)) {
-            Settings.Secure.putInt(getContentResolver(),
-                    Settings.Secure.KILL_APP_LONGPRESS_BACK,
-                    mGeneralKillAppPref.isChecked() ? 1 : 0);
         }
     }
 }

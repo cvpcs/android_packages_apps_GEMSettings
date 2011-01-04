@@ -113,11 +113,11 @@
     <string name="title_tools">Other Tools</string>
     <string name="summary_tools">Miscellaneous Other Options</string>
 	
-	<string name="title_spare_parts">Spare Parts</strings>
-	<string name="summary_spare_parts">Various minor device tweaks</strings>
+	<string name="title_spare_parts">Spare Parts</string>
+	<string name="summary_spare_parts">Various minor device tweaks</string>
 	
-	<string name="title_dev_tools">Dev Tools</strings>
-	<string name="summary_dev_tools">Miscellaneous tools for developers</strings>	
+	<string name="title_dev_tools">Dev Tools</string>
+	<string name="summary_dev_tools">Miscellaneous tools for developers</string>	
 	
     <!-- Other options not fit for other categories -->
     <string name="title_extras">Extras</string>

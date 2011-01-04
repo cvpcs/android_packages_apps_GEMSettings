@@ -18,7 +18,7 @@
 */
 -->
 <resources>
-    <integer-array name="steps_general_auto_brightness_minimum_backlight_level">
+    <integer-array name="auto_brightness_minimum_backlight_level">
         <item>2</item>
         <item>5</item>
         <item>7</item>
