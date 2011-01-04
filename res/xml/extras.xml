@@ -20,7 +20,7 @@
                   xmlns:cvpcs="http://schemas.cvpcs.org/apk/res/android">
 
     <PreferenceCategory
-        android:title="@string/title_extras">
+        android:title="Extras">
  
         <CheckBoxPreference
             android:key="display_adb_usb_debugging_notif"

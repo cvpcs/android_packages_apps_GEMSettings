@@ -52,7 +52,7 @@ public class Extras extends PreferenceActivity
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.gem_settings);
+        addPreferencesFromResource(R.xml.extras);
 
         final PreferenceScreen prefSet = getPreferenceScreen();
 
