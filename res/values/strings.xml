@@ -22,7 +22,7 @@
     
     <!-- Section devoted to runnable performance enhancements -->
     <string name="title_performance">Performance</string>
-    <string name="summary_performance">Various services/enhancements to the system</string>
+    <string name="summary_performance">Various services for the system</string>
 
         <string name="title_services">Services</string>
 
@@ -143,5 +143,5 @@
 
     <!-- Settings for push update notifications -->
     <string name="title_gemnotifications">GEM Notifications</string>
-    <string name="summary_gemnotifications">Register and configure push notifications</string>
+    <string name="summary_gemnotifications">Register for update notifications</string>
 </resources>
