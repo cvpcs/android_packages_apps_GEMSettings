@@ -50,6 +50,11 @@
             android:summaryOn="@string/summary_on_kill_app_longpress_back"
             android:summaryOff="@string/summary_off_kill_app_longpress_back" />
 
+	<CheckBoxPreference
+            android:key="use_rotary_lockscreen"
+            android:title="@string/title_use_rotary_lockscreen"
+            android:summaryOn="@string/summary_on_use_rotary_lockscreen"
+            android:summaryOff="@string/summary_off_use_rotary_lockscreen" />
     </PreferenceCategory>
 
     <PreferenceScreen android:key="cwiidconfig"

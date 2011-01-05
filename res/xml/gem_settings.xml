@@ -22,19 +22,13 @@
     <PreferenceCategory
         android:title="General">
  
-        <CheckBoxPreference
-            android:key="use_rotary_lockscreen"
-            android:title="@string/title_use_rotary_lockscreen"
-            android:summaryOn="@string/summary_on_use_rotary_lockscreen"
-            android:summaryOff="@string/summary_off_use_rotary_lockscreen" />
-    </PreferenceCategory>
-
     <PreferenceScreen android:key="performance"
         android:title="@string/title_performance"
         android:summary="@string/summary_performance">
         <intent android:action="android.intent.action.MAIN"
             android:targetPackage="org.cvpcs.android.gem_settings"
             android:targetClass="org.cvpcs.android.gem_settings.activities.Performance" />
+    
     </PreferenceScreen>
 
     <PreferenceScreen android:key="audio"
@@ -54,6 +48,16 @@
             android:targetClass="org.cvpcs.android.gem_settings.activities.UITweaks" />
     </PreferenceScreen>
 
+    <PreferenceScreen android:key="tools"
+	android:title="@string/title_tools"
+	android:summary="@string/summary_tools">
+	<intent
+	    android:action="android.intent.action.MAIN"
+	    android:targetPackage="org.cvpcs.android.gem_settings"
+
+android:targetClass="org.cvpcs.android.gem_settings.activities.Tools" />
+    </PreferenceScreen>
+
     <PreferenceScreen android:key="extras"
 	android:title="@string/title_extras"
 	android:summary="@string/summary_extras">
@@ -71,5 +75,5 @@
             android:targetPackage="org.cvpcs.android.gemnotifications"
             android:targetClass="org.cvpcs.android.gemnotifications.activities.GEMNotifications" />
     </PreferenceScreen>
-
+    </PreferenceCategory>
 </PreferenceScreen>

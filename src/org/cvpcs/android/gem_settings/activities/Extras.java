@@ -41,7 +41,9 @@ public class Extras extends PreferenceActivity
     private static final String AUTO_BRIGHT_MIN_LEVEL = "auto_brightness_minimum_backlight_level";
 
     private static final String KILL_APP = "kill_app_longpress_back";
+    private static final String GENERAL_ROTARY_LOCK = "use_rotary_lockscreen";
 
+    private CheckBoxPreference mGeneralUseRotaryLockPref;
     private CheckBoxPreference mNotifADBPref;
     private CheckBoxPreference mNotifLEDPref;
 
@@ -64,6 +66,8 @@ public class Extras extends PreferenceActivity
 
         mKillAppPref = (CheckBoxPreference)prefSet.findPreference(KILL_APP);
 
+	mGeneralUseRotaryLockPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_ROTARY_LOCK);
+
         prefSet.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -83,6 +87,9 @@ public class Extras extends PreferenceActivity
         mKillAppPref.setChecked(Settings.Secure.getInt(
                 getContentResolver(),
                 Settings.Secure.KILL_APP_LONGPRESS_BACK, 0) != 0);
+	mGeneralUseRotaryLockPref.setChecked(Settings.System.getInt(
+                getContentResolver(),
+                Settings.System.USE_ROTARY_LOCKSCREEN, 0) != 0);
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -106,6 +113,10 @@ public class Extras extends PreferenceActivity
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.KILL_APP_LONGPRESS_BACK,
                     mKillAppPref.isChecked() ? 1 : 0);
+        } else if (GENERAL_ROTARY_LOCK.equals(key)) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.USE_ROTARY_LOCKSCREEN,
+                    mGeneralUseRotaryLockPref.isChecked() ? 1 : 0);
         }
     }
 }

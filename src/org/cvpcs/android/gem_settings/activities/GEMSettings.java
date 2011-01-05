@@ -48,8 +48,6 @@ public class GEMSettings extends PreferenceActivity
 
         final PreferenceScreen prefSet = getPreferenceScreen();
 
-        mGeneralUseRotaryLockPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_ROTARY_LOCK);
-
         prefSet.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -57,9 +55,7 @@ public class GEMSettings extends PreferenceActivity
     public void onResume() {
         super.onResume();
 
-        mGeneralUseRotaryLockPref.setChecked(Settings.System.getInt(
-                getContentResolver(),
-                Settings.System.USE_ROTARY_LOCKSCREEN, 0) != 0);
+        
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -67,10 +63,7 @@ public class GEMSettings extends PreferenceActivity
     }
 
     public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
-          if (GENERAL_ROTARY_LOCK.equals(key)) {
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.USE_ROTARY_LOCKSCREEN,
-                    mGeneralUseRotaryLockPref.isChecked() ? 1 : 0);
-        }
+
     }
 }
+
