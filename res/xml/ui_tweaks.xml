@@ -18,8 +18,9 @@
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory
-        android:title="@string/title_ui_tweaks_status_bar">
+  <PreferenceCategory android:title="Pulldown Tweaks">
+
+    <PreferenceScreen android:title="Status Bar Colors">
 
         <Preference android:key="color_clock"
             android:title="@string/title_ui_tweaks_status_bar_color_clock"
@@ -41,10 +42,10 @@
             android:title="@string/title_ui_tweaks_status_bar_color_battery_percentage"
             android:defaultValue="@integer/color_white" />
 
-    </PreferenceCategory>
+    </PreferenceScreen>
 
-    <PreferenceCategory
-        android:title="@string/title_ui_tweaks_notifications">
+    <PreferenceScreen
+        android:title="Notification Colors">
 
         <Preference android:key="color_notification_ticker_text"
             android:title="@string/title_ui_tweaks_notifications_color_ticker_text"
@@ -82,7 +83,9 @@
             android:title="@string/title_ui_tweaks_notifications_color_item_time"
             android:defaultValue="@integer/color_black" />
 
-    </PreferenceCategory>
+    </PreferenceScreen>
+
+  </PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/title_ui_tweaks_display">
@@ -100,5 +103,5 @@
             android:summaryOff="@string/summary_off_ui_tweaks_display_battery_percentage" />
 
     </PreferenceCategory>
-
+  
 </PreferenceScreen>
