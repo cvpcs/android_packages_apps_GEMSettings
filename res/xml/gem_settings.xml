@@ -26,7 +26,8 @@
  
     <org.cvpcs.android.gem_settings.utils.IconPreferenceScreen android:key="performance"
 	gemsettings:icon="@drawable/ic_perform"
-        android:title="@string/title_performance">
+        android:title="@string/title_performance"
+	android:summary="@string/summary_performance">
         <intent android:action="android.intent.action.MAIN"
             android:targetPackage="org.cvpcs.android.gem_settings"
             android:targetClass="org.cvpcs.android.gem_settings.activities.Performance" />
@@ -35,7 +36,8 @@
 
     <org.cvpcs.android.gem_settings.utils.IconPreferenceScreen android:key="audio"
 	gemsettings:icon="@drawable/ic_audio"
-        android:title="@string/title_audio">
+        android:title="@string/title_audio"
+	android:summary="@string/summary_audio">
         <intent
             android:action="android.intent.action.MAIN"
             android:targetPackage="org.cvpcs.android.gem_settings"
@@ -44,7 +46,8 @@
 
     <org.cvpcs.android.gem_settings.utils.IconPreferenceScreen android:key="ui_tweaks"
 	gemsettings:icon="@drawable/ic_ui"
-        android:title="@string/title_ui_tweaks">
+        android:title="@string/title_ui_tweaks"
+	android:summary="@string/summary_ui_tweaks">
         <intent android:action="android.intent.action.MAIN"
             android:targetPackage="org.cvpcs.android.gem_settings"
             android:targetClass="org.cvpcs.android.gem_settings.activities.UITweaks" />
@@ -52,7 +55,8 @@
 
     <org.cvpcs.android.gem_settings.utils.IconPreferenceScreen android:key="tools"
 	gemsettings:icon="@drawable/ic_tools"
-	android:title="@string/title_tools">
+	android:title="@string/title_tools"
+	android:summary="@string/summary_tools">
 	<intent
 	    android:action="android.intent.action.MAIN"
 	    android:targetPackage="org.cvpcs.android.gem_settings"
@@ -62,7 +66,8 @@ android:targetClass="org.cvpcs.android.gem_settings.activities.Tools" />
 
     <org.cvpcs.android.gem_settings.utils.IconPreferenceScreen android:key="extras"
 	gemsettings:icon="@drawable/ic_extra"
-	android:title="@string/title_extras">
+	android:title="@string/title_extras"
+	android:summary="@string/summary_extras">
 	<intent 
 	    android:action="android.intent.action.MAIN"
 	    android:targetPackage="org.cvpcs.android.gem_settings"
@@ -71,7 +76,8 @@ android:targetClass="org.cvpcs.android.gem_settings.activities.Tools" />
 
     <org.cvpcs.android.gem_settings.utils.IconPreferenceScreen android:key="gemnotifications"
 	gemsettings:icon="@drawable/ic_gem"
-        android:title="@string/title_gemnotifications">
+        android:title="@string/title_gemnotifications"
+	android:summary="@string/summary_gemnotifications">
         <intent
             android:action="android.intent.action.MAIN"
             android:targetPackage="org.cvpcs.android.gemnotifications"
