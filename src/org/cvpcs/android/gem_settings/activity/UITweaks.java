@@ -15,11 +15,11 @@
 ** limitations under the License.
 */
 
-package org.cvpcs.android.gem_settings.activities;
+package org.cvpcs.android.gem_settings.activity;
 
 // import needed packages from gem_settings
 import org.cvpcs.android.gem_settings.R;
-import org.cvpcs.android.gem_settings.utils.ColorChangedListener;
+import org.cvpcs.android.gem_settings.util.ColorChangedListener;
 
 // import some new stuffs
 import android.app.ColorPickerDialog;

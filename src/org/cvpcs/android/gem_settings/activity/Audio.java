@@ -15,14 +15,14 @@
 ** limitations under the License.
 */
 
-package org.cvpcs.android.gem_settings.activities;
+package org.cvpcs.android.gem_settings.activity;
 
-import org.cvpcs.android.gem_settings.utils.SeekBarStepPreference;
 import org.cvpcs.android.gem_settings.R;
 
 import android.app.ColorPickerDialog;
 import android.content.SharedPreferences;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
@@ -31,22 +31,29 @@ import android.provider.Settings.SettingNotFoundException;
 import android.os.Bundle;
 import android.util.Log;
 
-public class GEMSettings extends PreferenceActivity
+public class Audio extends PreferenceActivity
         implements Preference.OnPreferenceChangeListener,
         SharedPreferences.OnSharedPreferenceChangeListener {
-    private static final String TAG = "GEMSettings";
+    private static final String TAG = "GEMSettings[Audio]";
 
-    private static final String GENERAL_ROTARY_LOCK = "use_rotary_lockscreen";
+    private static final String VOLUME_BUTTON_MUSIC_CONTROLS = "volume_button_music_controls";
 
-    private CheckBoxPreference mGeneralUseRotaryLockPref;
+    private static final String LOCKSCREEN_MUSIC_CONTROLS = "display_lockscreen_music_controls";
 
+    private CheckBoxPreference mVolumeButtonMusicControlsPref;
+
+    private ListPreference mGeneralLockscreenMusicControlsPref;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.gem_settings);
+        addPreferencesFromResource(R.xml.audio);
 
         final PreferenceScreen prefSet = getPreferenceScreen();
+
+        mVolumeButtonMusicControlsPref = (CheckBoxPreference)prefSet.findPreference(VOLUME_BUTTON_MUSIC_CONTROLS);
+
+        mGeneralLockscreenMusicControlsPref = (ListPreference)prefSet.findPreference(LOCKSCREEN_MUSIC_CONTROLS);
 
         prefSet.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
@@ -55,7 +62,12 @@ public class GEMSettings extends PreferenceActivity
     public void onResume() {
         super.onResume();
 
-        
+        mVolumeButtonMusicControlsPref.setChecked(Settings.System.getInt(
+                getContentResolver(),
+                Settings.System.ENABLE_VOLBTN_MUSIC_CONTROLS, 1) != 0);
+        mGeneralLockscreenMusicControlsPref.setValue(Integer.toString(Settings.System.getInt(
+                getContentResolver(),
+                Settings.System.DISPLAY_LOCKSCREEN_MUSIC_CONTROLS, 1)));
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -63,7 +75,14 @@ public class GEMSettings extends PreferenceActivity
     }
 
     public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
-
+        if (VOLUME_BUTTON_MUSIC_CONTROLS.equals(key)) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.ENABLE_VOLBTN_MUSIC_CONTROLS,
+                    mVolumeButtonMusicControlsPref.isChecked() ? 1 : 0);
+        } else if (LOCKSCREEN_MUSIC_CONTROLS.equals(key)) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.DISPLAY_LOCKSCREEN_MUSIC_CONTROLS,
+                    Integer.parseInt(mGeneralLockscreenMusicControlsPref.getValue()));
+        }
     }
 }
-

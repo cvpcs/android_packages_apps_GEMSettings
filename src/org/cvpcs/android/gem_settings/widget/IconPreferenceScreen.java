@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.cvpcs.android.gem_settings.utils;
+package org.cvpcs.android.gem_settings.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

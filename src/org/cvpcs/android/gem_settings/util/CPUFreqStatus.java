@@ -15,7 +15,7 @@
 ** limitations under the License.
 */
 
-package org.cvpcs.android.gem_settings.utils;
+package org.cvpcs.android.gem_settings.util;
 
 import android.util.Log;
 

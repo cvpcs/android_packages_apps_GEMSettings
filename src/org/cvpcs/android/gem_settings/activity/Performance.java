@@ -15,11 +15,11 @@
 ** limitations under the License.
 */
 
-package org.cvpcs.android.gem_settings.activities;
+package org.cvpcs.android.gem_settings.activity;
 
 import org.cvpcs.android.gem_settings.R;
-import org.cvpcs.android.gem_settings.utils.CPUFreqStatus;
-import org.cvpcs.android.gem_settings.utils.SeekBarStepPreference;
+import org.cvpcs.android.gem_settings.util.CPUFreqStatus;
+import org.cvpcs.android.gem_settings.widget.SeekBarStepPreference;
 
 import android.content.SharedPreferences;
 import android.preference.CheckBoxPreference;

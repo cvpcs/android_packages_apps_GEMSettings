@@ -24,23 +24,23 @@
 
         <Preference android:key="color_clock"
             android:title="@string/title_ui_tweaks_status_bar_color_clock"
-            android:defaultValue="@integer/color_black" />
+            android:defaultValue="@android:color/black" />
 
         <Preference android:key="color_date"
             android:title="@string/title_ui_tweaks_status_bar_color_date"
-            android:defaultValue="@integer/color_black" />
+            android:defaultValue="@android:color/black" />
 
         <Preference android:key="color_label_spn"
             android:title="@string/title_ui_tweaks_status_bar_color_label_spn"
-            android:defaultValue="@integer/color_black" />
+            android:defaultValue="@android:color/black" />
 
         <Preference android:key="color_label_plmn"
             android:title="@string/title_ui_tweaks_status_bar_color_label_plmn"
-            android:defaultValue="@integer/color_black" />
+            android:defaultValue="@android:color/black" />
 
         <Preference android:key="color_battery_percentage"
             android:title="@string/title_ui_tweaks_status_bar_color_battery_percentage"
-            android:defaultValue="@integer/color_white" />
+            android:defaultValue="@android:color/white" />
 
     </PreferenceScreen>
 
@@ -49,39 +49,39 @@
 
         <Preference android:key="color_notification_ticker_text"
             android:title="@string/title_ui_tweaks_notifications_color_ticker_text"
-            android:defaultValue="@integer/color_black" />
+            android:defaultValue="@android:color/black" />
 
         <Preference android:key="color_notification_none"
             android:title="@string/title_ui_tweaks_notifications_color_none"
-            android:defaultValue="@integer/color_white" />
+            android:defaultValue="@android:color/white" />
 
         <Preference android:key="color_notification_latest"
             android:title="@string/title_ui_tweaks_notifications_color_latest"
-            android:defaultValue="@integer/color_white" />
+            android:defaultValue="@android:color/white" />
 
         <Preference android:key="color_notification_ongoing"
             android:title="@string/title_ui_tweaks_notifications_color_ongoing"
-            android:defaultValue="@integer/color_white" />
+            android:defaultValue="@android:color/white" />
 
         <Preference android:key="color_notification_clear_button"
             android:title="@string/title_ui_tweaks_notifications_color_clear_button"
-            android:defaultValue="@integer/color_black" />
+            android:defaultValue="@android:color/black" />
 
         <Preference android:key="color_notification_item_title"
             android:title="@string/title_ui_tweaks_notifications_color_item_title"
-            android:defaultValue="@integer/color_black" />
+            android:defaultValue="@android:color/black" />
 
         <Preference android:key="color_notification_item_text"
             android:title="@string/title_ui_tweaks_notifications_color_item_text"
-            android:defaultValue="@integer/color_black" />
+            android:defaultValue="@android:color/black" />
 
         <Preference android:key="color_notification_item_progress_text"
             android:title="@string/title_ui_tweaks_notifications_color_item_progress_text"
-            android:defaultValue="@integer/color_black" />
+            android:defaultValue="@android:color/black" />
 
         <Preference android:key="color_notification_item_time"
             android:title="@string/title_ui_tweaks_notifications_color_item_time"
-            android:defaultValue="@integer/color_black" />
+            android:defaultValue="@android:color/black" />
 
     </PreferenceScreen>
 

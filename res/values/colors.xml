@@ -18,6 +18,5 @@
 */
 -->
 <resources>
-    <integer name="color_black">-16777216</integer>
-    <integer name="color_white">-1</integer>
+    <color name="dragndrop_background">#e0103010</color>
 </resources>

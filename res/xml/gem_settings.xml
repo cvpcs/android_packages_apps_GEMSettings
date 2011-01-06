@@ -24,64 +24,63 @@
     <PreferenceCategory
         android:title="General">
  
-    <org.cvpcs.android.gem_settings.utils.IconPreferenceScreen android:key="performance"
+    <org.cvpcs.android.gem_settings.widget.IconPreferenceScreen android:key="performance"
 	gemsettings:icon="@drawable/ic_perform"
         android:title="@string/title_performance"
 	android:summary="@string/summary_performance">
         <intent android:action="android.intent.action.MAIN"
             android:targetPackage="org.cvpcs.android.gem_settings"
-            android:targetClass="org.cvpcs.android.gem_settings.activities.Performance" />
+            android:targetClass="org.cvpcs.android.gem_settings.activity.Performance" />
     
-    </org.cvpcs.android.gem_settings.utils.IconPreferenceScreen>
+    </org.cvpcs.android.gem_settings.widget.IconPreferenceScreen>
 
-    <org.cvpcs.android.gem_settings.utils.IconPreferenceScreen android:key="audio"
+    <org.cvpcs.android.gem_settings.widget.IconPreferenceScreen android:key="audio"
 	gemsettings:icon="@drawable/ic_audio"
         android:title="@string/title_audio"
 	android:summary="@string/summary_audio">
         <intent
             android:action="android.intent.action.MAIN"
             android:targetPackage="org.cvpcs.android.gem_settings"
-            android:targetClass="org.cvpcs.android.gem_settings.activities.Audio" />
-    </org.cvpcs.android.gem_settings.utils.IconPreferenceScreen>
+            android:targetClass="org.cvpcs.android.gem_settings.activity.Audio" />
+    </org.cvpcs.android.gem_settings.widget.IconPreferenceScreen>
 
-    <org.cvpcs.android.gem_settings.utils.IconPreferenceScreen android:key="ui_tweaks"
+    <org.cvpcs.android.gem_settings.widget.IconPreferenceScreen android:key="ui_tweaks"
 	gemsettings:icon="@drawable/ic_ui"
         android:title="@string/title_ui_tweaks"
 	android:summary="@string/summary_ui_tweaks">
         <intent android:action="android.intent.action.MAIN"
             android:targetPackage="org.cvpcs.android.gem_settings"
-            android:targetClass="org.cvpcs.android.gem_settings.activities.UITweaks" />
-    </org.cvpcs.android.gem_settings.utils.IconPreferenceScreen>
+            android:targetClass="org.cvpcs.android.gem_settings.activity.UITweaks" />
+    </org.cvpcs.android.gem_settings.widget.IconPreferenceScreen>
 
-    <org.cvpcs.android.gem_settings.utils.IconPreferenceScreen android:key="tools"
+    <org.cvpcs.android.gem_settings.widget.IconPreferenceScreen android:key="tools"
 	gemsettings:icon="@drawable/ic_tools"
 	android:title="@string/title_tools"
 	android:summary="@string/summary_tools">
 	<intent
 	    android:action="android.intent.action.MAIN"
 	    android:targetPackage="org.cvpcs.android.gem_settings"
+            android:targetClass="org.cvpcs.android.gem_settings.activity.Tools" />
+    </org.cvpcs.android.gem_settings.widget.IconPreferenceScreen>
 
-android:targetClass="org.cvpcs.android.gem_settings.activities.Tools" />
-    </org.cvpcs.android.gem_settings.utils.IconPreferenceScreen>
-
-    <org.cvpcs.android.gem_settings.utils.IconPreferenceScreen android:key="extras"
+    <org.cvpcs.android.gem_settings.widget.IconPreferenceScreen android:key="extras"
 	gemsettings:icon="@drawable/ic_extra"
 	android:title="@string/title_extras"
 	android:summary="@string/summary_extras">
 	<intent 
 	    android:action="android.intent.action.MAIN"
 	    android:targetPackage="org.cvpcs.android.gem_settings"
-	    android:targetClass="org.cvpcs.android.gem_settings.activities.Extras"  />
-    </org.cvpcs.android.gem_settings.utils.IconPreferenceScreen>
+	    android:targetClass="org.cvpcs.android.gem_settings.activity.Extras"  />
+    </org.cvpcs.android.gem_settings.widget.IconPreferenceScreen>
 
-    <org.cvpcs.android.gem_settings.utils.IconPreferenceScreen android:key="gemnotifications"
+    <org.cvpcs.android.gem_settings.widget.IconPreferenceScreen android:key="gemnotifications"
 	gemsettings:icon="@drawable/ic_gem"
         android:title="@string/title_gemnotifications"
 	android:summary="@string/summary_gemnotifications">
         <intent
             android:action="android.intent.action.MAIN"
             android:targetPackage="org.cvpcs.android.gemnotifications"
-            android:targetClass="org.cvpcs.android.gemnotifications.activities.GEMNotifications" />
-    </org.cvpcs.android.gem_settings.utils.IconPreferenceScreen>
+            android:targetClass="org.cvpcs.android.gemnotifications.activity.GEMNotifications" />
+    </org.cvpcs.android.gem_settings.widget.IconPreferenceScreen>
     </PreferenceCategory>
 </PreferenceScreen>

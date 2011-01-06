@@ -26,7 +26,7 @@
     
     <application android:label="@string/app_label" android:icon="@drawable/app_icon">
 
-        <activity android:name=".activities.GEMSettings">
+        <activity android:name=".activity.GEMSettings">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <!-- Disable these because this is now accessed via the settings menu
@@ -36,27 +36,27 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.Audio">
+        <activity android:name=".activity.Audio">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Performance">
+        <activity android:name=".activity.Performance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.UITweaks">
+        <activity android:name=".activity.UITweaks">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-	<activity android:name=".activities.Extras">
+	<activity android:name=".activity.Extras">
 	    <intent-filter>
 		<action android:name="android.intent.action.MAIN" />
 	    </intent-filter>
 	</activity>
-	<activity android:name=".activities.Tools">
+	<activity android:name=".activity.Tools">
 	    <intent-filter>
 		<action android:name="android.intent.action.MAIN" />
 	    </intent-filter>

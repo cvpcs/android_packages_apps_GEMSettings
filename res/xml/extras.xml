@@ -35,7 +35,7 @@
             android:summaryOff="@string/summary_off_display_notification_led_screen_on" />
 
 
-        <org.cvpcs.android.gem_settings.utils.SeekBarStepPreference
+        <org.cvpcs.android.gem_settings.widget.SeekBarStepPreference
             android:key="auto_brightness_minimum_backlight_level"
             android:title="@string/title_auto_brightness_minimum_backlight_level"
             android:summary="@string/summary_auto_brightness_minimum_backlight_level"

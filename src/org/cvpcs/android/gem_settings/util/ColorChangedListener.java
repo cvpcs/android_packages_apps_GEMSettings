@@ -1,4 +1,4 @@
-package org.cvpcs.android.gem_settings.utils;
+package org.cvpcs.android.gem_settings.util;
 
 import android.app.ColorPickerDialog;
 import android.preference.PreferenceActivity;
