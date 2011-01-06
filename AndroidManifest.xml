@@ -51,6 +51,16 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+	<activity android:name=".activities.Extras">
+	    <intent-filter>
+		<action android:name="android.intent.action.MAIN" />
+	    </intent-filter>
+	</activity>
+	<activity android:name=".activities.Tools">
+	    <intent-filter>
+		<action android:name="android.intent.action.MAIN" />
+	    </intent-filter>
+	</activity>
 
     </application>
 </manifest>

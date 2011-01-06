@@ -31,31 +31,23 @@ import android.provider.Settings.SettingNotFoundException;
 import android.os.Bundle;
 import android.util.Log;
 
-public class GEMSettings extends PreferenceActivity
+public class Tools extends PreferenceActivity
         implements Preference.OnPreferenceChangeListener,
         SharedPreferences.OnSharedPreferenceChangeListener {
-    private static final String TAG = "GEMSettings";
-
-    private static final String GENERAL_ROTARY_LOCK = "use_rotary_lockscreen";
-
-    private CheckBoxPreference mGeneralUseRotaryLockPref;
-
+    private static final String TAG = "GEMSettings[Tools]";
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.gem_settings);
+        addPreferencesFromResource(R.xml.tools);
 
         final PreferenceScreen prefSet = getPreferenceScreen();
-
-        prefSet.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -63,7 +55,7 @@ public class GEMSettings extends PreferenceActivity
     }
 
     public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
-
+          
     }
 }
 
