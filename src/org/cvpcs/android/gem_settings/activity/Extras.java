@@ -20,7 +20,6 @@ package org.cvpcs.android.gem_settings.activity;
 import org.cvpcs.android.gem_settings.widget.SeekBarStepPreference;
 import org.cvpcs.android.gem_settings.R;
 
-import android.content.SharedPreferences;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -31,8 +30,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 public class Extras extends PreferenceActivity
-        implements Preference.OnPreferenceChangeListener,
-        SharedPreferences.OnSharedPreferenceChangeListener {
+        implements Preference.OnPreferenceChangeListener {
     private static final String TAG = "GEMSettings[Extras]";
 
     private static final String NOTIF_ADB = "display_adb_usb_debugging_notif";
@@ -59,64 +57,70 @@ public class Extras extends PreferenceActivity
         final PreferenceScreen prefSet = getPreferenceScreen();
 
         mNotifADBPref = (CheckBoxPreference)prefSet.findPreference(NOTIF_ADB);
-        mNotifLEDPref = (CheckBoxPreference)prefSet.findPreference(NOTIF_LED);
-
-        mAutoBrightMinLevelPref = (SeekBarStepPreference)prefSet.findPreference(AUTO_BRIGHT_MIN_LEVEL);
-        mAutoBrightMinLevelPref.setOnPreferenceChangeListener(this);
-
-        mKillAppPref = (CheckBoxPreference)prefSet.findPreference(KILL_APP);
-
-	mGeneralUseRotaryLockPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_ROTARY_LOCK);
-
-        prefSet.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        mNotifLEDPref.setChecked(Settings.Secure.getInt(
-                getContentResolver(),
-                Settings.Secure.DISPLAY_NOTIFICATION_LED_SCREEN_ON, 0) != 0);
         mNotifADBPref.setChecked(Settings.Secure.getInt(
                 getContentResolver(),
                 Settings.Secure.DISPLAY_ADB_USB_DEBUGGING_NOTIFICATION, 1) != 0);
+
+        mNotifLEDPref = (CheckBoxPreference)prefSet.findPreference(NOTIF_LED);
+        mNotifLEDPref.setChecked(Settings.Secure.getInt(
+                getContentResolver(),
+                Settings.Secure.DISPLAY_NOTIFICATION_LED_SCREEN_ON, 0) != 0);
+
+        mAutoBrightMinLevelPref = (SeekBarStepPreference)prefSet.findPreference(AUTO_BRIGHT_MIN_LEVEL);
         mAutoBrightMinLevelPref.setValue(Settings.Secure.getInt(
                 getContentResolver(),
                 Settings.Secure.AUTO_BRIGHTNESS_MINIMUM_BACKLIGHT_LEVEL, 16));
+        mAutoBrightMinLevelPref.setOnPreferenceChangeListener(this);
+
+        mKillAppPref = (CheckBoxPreference)prefSet.findPreference(KILL_APP);
         mKillAppPref.setChecked(Settings.Secure.getInt(
                 getContentResolver(),
                 Settings.Secure.KILL_APP_LONGPRESS_BACK, 0) != 0);
-	mGeneralUseRotaryLockPref.setChecked(Settings.System.getInt(
+
+	    mGeneralUseRotaryLockPref = (CheckBoxPreference)prefSet.findPreference(GENERAL_ROTARY_LOCK);
+    	mGeneralUseRotaryLockPref.setChecked(Settings.System.getInt(
                 getContentResolver(),
                 Settings.System.USE_ROTARY_LOCKSCREEN, 0) != 0);
     }
 
-    public boolean onPreferenceChange(Preference preference, Object objValue) {
-        return true;
-    }
-
-    public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
-        if (NOTIF_ADB.equals(key)) {
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if(preference == mNotifADBPref) {
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.DISPLAY_ADB_USB_DEBUGGING_NOTIFICATION,
                     mNotifADBPref.isChecked() ? 1 : 0);
-        } else if (NOTIF_LED.equals(key)) {
+        }
+
+        if(preference == mNotifLEDPref) {
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.DISPLAY_NOTIFICATION_LED_SCREEN_ON,
                     mNotifLEDPref.isChecked() ? 1 : 0);
-        } else if (AUTO_BRIGHT_MIN_LEVEL.equals(key)) {
-            Settings.Secure.putInt(getContentResolver(),
-                    Settings.Secure.AUTO_BRIGHTNESS_MINIMUM_BACKLIGHT_LEVEL,
-                    mAutoBrightMinLevelPref.getValue());
-        } else if (KILL_APP.equals(key)) {
+        }
+
+        if(preference == mKillAppPref) {
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.KILL_APP_LONGPRESS_BACK,
                     mKillAppPref.isChecked() ? 1 : 0);
-        } else if (GENERAL_ROTARY_LOCK.equals(key)) {
+        }
+
+        if(preference == mGeneralUseRotaryLockPref) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.USE_ROTARY_LOCKSCREEN,
                     mGeneralUseRotaryLockPref.isChecked() ? 1 : 0);
         }
+
+        return true;
+    }
+
+
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        if(preference == mAutoBrightMinLevelPref) {
+            Settings.Secure.putInt(getContentResolver(),
+                    Settings.Secure.AUTO_BRIGHTNESS_MINIMUM_BACKLIGHT_LEVEL,
+                    mAutoBrightMinLevelPref.getValue());
+            return true;
+        }
+
+        return false;
     }
 }

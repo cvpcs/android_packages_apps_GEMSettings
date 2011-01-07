@@ -17,53 +17,19 @@
 
 package org.cvpcs.android.gem_settings.activity;
 
-import org.cvpcs.android.gem_settings.widget.SeekBarStepPreference;
 import org.cvpcs.android.gem_settings.R;
 
-import android.app.ColorPickerDialog;
-import android.content.SharedPreferences;
-import android.preference.CheckBoxPreference;
-import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceScreen;
-import android.provider.Settings;
-import android.provider.Settings.SettingNotFoundException;
 import android.os.Bundle;
 import android.util.Log;
 
-public class GEMSettings extends PreferenceActivity
-        implements Preference.OnPreferenceChangeListener,
-        SharedPreferences.OnSharedPreferenceChangeListener {
+public class GEMSettings extends PreferenceActivity {
     private static final String TAG = "GEMSettings";
-
-    private static final String GENERAL_ROTARY_LOCK = "use_rotary_lockscreen";
-
-    private CheckBoxPreference mGeneralUseRotaryLockPref;
-
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.gem_settings);
-
-        final PreferenceScreen prefSet = getPreferenceScreen();
-
-        prefSet.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        
-    }
-
-    public boolean onPreferenceChange(Preference preference, Object objValue) {
-        return true;
-    }
-
-    public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
-
     }
 }
 

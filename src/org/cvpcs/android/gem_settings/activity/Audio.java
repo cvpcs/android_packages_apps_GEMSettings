@@ -20,7 +20,6 @@ package org.cvpcs.android.gem_settings.activity;
 import org.cvpcs.android.gem_settings.R;
 
 import android.app.ColorPickerDialog;
-import android.content.SharedPreferences;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -32,8 +31,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 public class Audio extends PreferenceActivity
-        implements Preference.OnPreferenceChangeListener,
-        SharedPreferences.OnSharedPreferenceChangeListener {
+        implements Preference.OnPreferenceChangeListener {
     private static final String TAG = "GEMSettings[Audio]";
 
     private static final String VOLUME_BUTTON_MUSIC_CONTROLS = "volume_button_music_controls";
@@ -52,37 +50,36 @@ public class Audio extends PreferenceActivity
         final PreferenceScreen prefSet = getPreferenceScreen();
 
         mVolumeButtonMusicControlsPref = (CheckBoxPreference)prefSet.findPreference(VOLUME_BUTTON_MUSIC_CONTROLS);
-
-        mGeneralLockscreenMusicControlsPref = (ListPreference)prefSet.findPreference(LOCKSCREEN_MUSIC_CONTROLS);
-
-        prefSet.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
         mVolumeButtonMusicControlsPref.setChecked(Settings.System.getInt(
                 getContentResolver(),
                 Settings.System.ENABLE_VOLBTN_MUSIC_CONTROLS, 1) != 0);
+
+        mGeneralLockscreenMusicControlsPref = (ListPreference)prefSet.findPreference(LOCKSCREEN_MUSIC_CONTROLS);
         mGeneralLockscreenMusicControlsPref.setValue(Integer.toString(Settings.System.getInt(
                 getContentResolver(),
                 Settings.System.DISPLAY_LOCKSCREEN_MUSIC_CONTROLS, 1)));
+        mGeneralLockscreenMusicControlsPref.setOnPreferenceChangeListener(this);
     }
 
-    public boolean onPreferenceChange(Preference preference, Object objValue) {
-        return true;
-    }
-
-    public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
-        if (VOLUME_BUTTON_MUSIC_CONTROLS.equals(key)) {
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if(preference == mVolumeButtonMusicControlsPref) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.ENABLE_VOLBTN_MUSIC_CONTROLS,
                     mVolumeButtonMusicControlsPref.isChecked() ? 1 : 0);
-        } else if (LOCKSCREEN_MUSIC_CONTROLS.equals(key)) {
+        }
+
+        return true;
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        if(preference == mGeneralLockscreenMusicControlsPref) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.DISPLAY_LOCKSCREEN_MUSIC_CONTROLS,
                     Integer.parseInt(mGeneralLockscreenMusicControlsPref.getValue()));
+            return true;
         }
+
+        return false;
     }
 }

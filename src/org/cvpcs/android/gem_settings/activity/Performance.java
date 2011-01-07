@@ -21,7 +21,6 @@ import org.cvpcs.android.gem_settings.R;
 import org.cvpcs.android.gem_settings.util.CPUFreqStatus;
 import org.cvpcs.android.gem_settings.widget.SeekBarStepPreference;
 
-import android.content.SharedPreferences;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -37,8 +36,7 @@ import android.widget.Toast;
 import java.io.File;
 
 public class Performance extends PreferenceActivity
-        implements Preference.OnPreferenceChangeListener,
-        SharedPreferences.OnSharedPreferenceChangeListener {
+        implements Preference.OnPreferenceChangeListener {
     private static final String TAG = "GEMSettings[Performance]";
 
     private static final String SERVICE_COMPCACHE = "compcache";
@@ -73,6 +71,8 @@ public class Performance extends PreferenceActivity
         final PreferenceScreen prefSet = getPreferenceScreen();
 
         mServiceCompcachePref = (CheckBoxPreference)prefSet.findPreference(SERVICE_COMPCACHE);
+        mServiceCompcachePref.setChecked(SystemProperties.getBoolean(
+                SERVICE_COMPCACHE_PROPERTY, false));
         if(!isCompcacheAvailable()) {
             // disable compcache but display a message so people know why it's not working
             mServiceCompcachePref.setEnabled(false);
@@ -84,63 +84,70 @@ public class Performance extends PreferenceActivity
         }
 
         mCPUFreqEnablePref = (CheckBoxPreference)prefSet.findPreference(CPUFREQ_ENABLE);
+        mCPUFreqEnablePref.setChecked(SystemProperties.getBoolean(
+                CPUFREQ_ENABLE_PROPERTY, true));
+
         mCPUFreqGovernorPref = (ListPreference)prefSet.findPreference(CPUFREQ_GOVERNOR);
         mCPUFreqGovernorPref.setEntries(CPUFreqStatus.getGovernors());
         mCPUFreqGovernorPref.setEntryValues(CPUFreqStatus.getGovernors());
+        mCPUFreqGovernorPref.setValue(SystemProperties.get(
+                CPUFREQ_GOVERNOR_PROPERTY, CPUFreqStatus.getCurrentGovernor()));
+        mCPUFreqGovernorPref.setOnPreferenceChangeListener(this);
 
         SeekBarStepPreference.DisplayValueConverter mdvc = new HzToMhzDisplayValueConverter();
 
         mCPUFreqMinimumPref = (SeekBarStepPreference)prefSet.findPreference(CPUFREQ_MINIMUM);
         mCPUFreqMinimumPref.setDisplayValueConverter(mdvc);
         mCPUFreqMinimumPref.setSteps(CPUFreqStatus.getSpeedSteps());
+        mCPUFreqMinimumPref.setValue(SystemProperties.getInt(
+                CPUFREQ_MINIMUM_PROPERTY, CPUFreqStatus.getCurrentMinimum()));
+        mCPUFreqMinimumPref.setOnPreferenceChangeListener(this);
 
         mCPUFreqMaximumPref = (SeekBarStepPreference)prefSet.findPreference(CPUFREQ_MAXIMUM);
         mCPUFreqMaximumPref.setDisplayValueConverter(mdvc);
         mCPUFreqMaximumPref.setSteps(CPUFreqStatus.getSpeedSteps());
-
-        prefSet.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+        mCPUFreqMaximumPref.setValue(SystemProperties.getInt(
+                CPUFREQ_MAXIMUM_PROPERTY, CPUFreqStatus.getCurrentMaximum()));
+        mCPUFreqMaximumPref.setOnPreferenceChangeListener(this);
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if(preference == mServiceCompcachePref) {
+            SystemProperties.set(SERVICE_COMPCACHE_PROPERTY,
+                    mServiceCompcachePref.isChecked() ? "1" : "0");
+        }
 
-        mServiceCompcachePref.setChecked(SystemProperties.getBoolean(
-                SERVICE_COMPCACHE_PROPERTY, false));
+        if(preference == mCPUFreqEnablePref) {
+            SystemProperties.set(CPUFREQ_ENABLE_PROPERTY,
+                    mCPUFreqEnablePref.isChecked() ? "1" : "0");
+        }
 
-        mCPUFreqEnablePref.setChecked(SystemProperties.getBoolean(
-                CPUFREQ_ENABLE_PROPERTY, true));
-        mCPUFreqGovernorPref.setValue(SystemProperties.get(
-                CPUFREQ_GOVERNOR_PROPERTY, CPUFreqStatus.getCurrentGovernor()));
-        mCPUFreqMinimumPref.setValue(SystemProperties.getInt(
-                CPUFREQ_MINIMUM_PROPERTY, CPUFreqStatus.getCurrentMinimum()));
-        mCPUFreqMaximumPref.setValue(SystemProperties.getInt(
-                CPUFREQ_MAXIMUM_PROPERTY, CPUFreqStatus.getCurrentMaximum()));
-    }
-
-    public boolean onPreferenceChange(Preference preference, Object objValue) {
         return true;
     }
 
-    public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
-        if (SERVICE_COMPCACHE.equals(key)) {
-            SystemProperties.set(SERVICE_COMPCACHE_PROPERTY,
-                    mServiceCompcachePref.isChecked() ? "1" : "0");
-        } else if (CPUFREQ_ENABLE.equals(key)) {
-            SystemProperties.set(CPUFREQ_ENABLE_PROPERTY,
-                    mCPUFreqEnablePref.isChecked() ? "1" : "0");
-        } else if (CPUFREQ_GOVERNOR.equals(key)) {
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        if(preference == mCPUFreqGovernorPref) {
             SystemProperties.set(CPUFREQ_GOVERNOR_PROPERTY,
                     mCPUFreqGovernorPref.getValue());
-        } else if (CPUFREQ_MINIMUM.equals(key)) {
+            return true;
+        }
+
+        if(preference == mCPUFreqMinimumPref) {
             SystemProperties.set(CPUFREQ_MINIMUM_PROPERTY,
                     Integer.toString(mCPUFreqMinimumPref.getValue()));
             checkCPUSpeeds();
-        } else if (CPUFREQ_MAXIMUM.equals(key)) {
+            return true;
+        }
+
+        if(preference == mCPUFreqMaximumPref) {
             SystemProperties.set(CPUFREQ_MAXIMUM_PROPERTY,
                     Integer.toString(mCPUFreqMaximumPref.getValue()));
             checkCPUSpeeds();
+            return true;
         }
+
+        return false;
     }
 
     private boolean isCompcacheAvailable() {

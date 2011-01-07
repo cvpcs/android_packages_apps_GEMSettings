@@ -17,45 +17,19 @@
 
 package org.cvpcs.android.gem_settings.activity;
 
-import org.cvpcs.android.gem_settings.widget.SeekBarStepPreference;
 import org.cvpcs.android.gem_settings.R;
 
-import android.app.ColorPickerDialog;
-import android.content.SharedPreferences;
-import android.preference.CheckBoxPreference;
-import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceScreen;
-import android.provider.Settings;
-import android.provider.Settings.SettingNotFoundException;
 import android.os.Bundle;
 import android.util.Log;
 
-public class Tools extends PreferenceActivity
-        implements Preference.OnPreferenceChangeListener,
-        SharedPreferences.OnSharedPreferenceChangeListener {
+public class Tools extends PreferenceActivity {
     private static final String TAG = "GEMSettings[Tools]";
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.tools);
-
-        final PreferenceScreen prefSet = getPreferenceScreen();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-    }
-
-    public boolean onPreferenceChange(Preference preference, Object objValue) {
-        return true;
-    }
-
-    public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
-          
     }
 }
 
