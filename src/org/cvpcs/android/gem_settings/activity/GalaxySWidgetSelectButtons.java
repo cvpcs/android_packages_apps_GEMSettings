@@ -50,9 +50,8 @@ public class GalaxySWidgetSelectButtons extends PreferenceActivity {
         final PreferenceScreen prefSet = getPreferenceScreen();
 
         // empty our preference category and set it to order as added
-        PreferenceCategory pc = (PreferenceCategory)prefSet.findPreference(BUTTONS_CATEGORY);
-        pc.removeAll();
-        pc.setOrderingAsAdded(true);
+        prefSet.removeAll();
+        prefSet.setOrderingAsAdded(true);
 
         // emtpy our checkbox map
         mCheckBoxPrefs.clear();
@@ -86,7 +85,7 @@ public class GalaxySWidgetSelectButtons extends PreferenceActivity {
             mCheckBoxPrefs.put(cb, button.getId());
 
             // add to the category
-            pc.addPreference(cb);
+            prefSet.addPreference(cb);
         }
     }
 

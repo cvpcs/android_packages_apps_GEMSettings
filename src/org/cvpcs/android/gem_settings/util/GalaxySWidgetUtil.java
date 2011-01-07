@@ -78,23 +78,24 @@ public class GalaxySWidgetUtil {
     public static String mergeInNewButtonString(String oldString, String newString) {
         ArrayList<String> oldList = getButtonListFromString(oldString);
         ArrayList<String> newList = getButtonListFromString(newString);
+        ArrayList<String> mergedList = new ArrayList<String>();
 
-        // remove all items in old list that aren't in new list
+        // add any items from oldlist that are in new list
         for(String button : oldList) {
-            if(!newList.contains(button)) {
-                oldList.remove(button);
+            if(newList.contains(button)) {
+                mergedList.add(button);
             }
         }
 
-        // append anything in newlist that isn't already in old list to the end of old list
+        // append anything in newlist that isn't already in the merged list to the end of the list
         for(String button : newList) {
-            if(!oldList.contains(button)) {
-                oldList.add(button);
+            if(!mergedList.contains(button)) {
+                mergedList.add(button);
             }
         }
 
-        // return modified old list
-        return getButtonStringFromList(oldList);
+        // return merged list
+        return getButtonStringFromList(mergedList);
     }
 
     public static ArrayList<String> getButtonListFromString(String buttons) {
