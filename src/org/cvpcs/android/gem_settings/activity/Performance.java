@@ -116,14 +116,14 @@ public class Performance extends PreferenceActivity
         if(preference == mServiceCompcachePref) {
             SystemProperties.set(SERVICE_COMPCACHE_PROPERTY,
                     mServiceCompcachePref.isChecked() ? "1" : "0");
-        }
-
-        if(preference == mCPUFreqEnablePref) {
+            return true;
+        } else if(preference == mCPUFreqEnablePref) {
             SystemProperties.set(CPUFREQ_ENABLE_PROPERTY,
                     mCPUFreqEnablePref.isChecked() ? "1" : "0");
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {

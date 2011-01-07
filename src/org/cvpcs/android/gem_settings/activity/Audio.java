@@ -67,9 +67,10 @@ public class Audio extends PreferenceActivity
             Settings.System.putInt(getContentResolver(),
                     Settings.System.ENABLE_VOLBTN_MUSIC_CONTROLS,
                     mVolumeButtonMusicControlsPref.isChecked() ? 1 : 0);
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {

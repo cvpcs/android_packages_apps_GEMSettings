@@ -121,137 +121,123 @@ public class UITweaks extends PreferenceActivity {
                             Settings.System.COLOR_CLOCK,
                             getResources().getColor(com.android.internal.R.color.black)));
             cp.show();
-        }
-
-        if (preference == mColorDatePref) {
+            return true;
+        } else if (preference == mColorDatePref) {
             ColorPickerDialog cp = new ColorPickerDialog(this,
                     new ColorChangedListener(this, Settings.System.COLOR_DATE),
                     Settings.System.getInt(getContentResolver(),
                             Settings.System.COLOR_DATE,
                             getResources().getColor(com.android.internal.R.color.black)));
             cp.show();
-        }
-
-        if (preference == mColorLabelSPNPref) {
+            return true;
+        } else if (preference == mColorLabelSPNPref) {
             ColorPickerDialog cp = new ColorPickerDialog(this,
                     new ColorChangedListener(this, Settings.System.COLOR_LABEL_SPN),
                     Settings.System.getInt(getContentResolver(),
                             Settings.System.COLOR_LABEL_SPN,
                             getResources().getColor(com.android.internal.R.color.black)));
             cp.show();
-        }
-
-        if (preference == mColorLabelPLMNPref) {
+            return true;
+        } else if (preference == mColorLabelPLMNPref) {
             ColorPickerDialog cp = new ColorPickerDialog(this,
                     new ColorChangedListener(this, Settings.System.COLOR_LABEL_PLMN),
                     Settings.System.getInt(getContentResolver(),
                             Settings.System.COLOR_LABEL_PLMN,
                             getResources().getColor(com.android.internal.R.color.black)));
             cp.show();
-        }
-
-        if (preference == mColorBatteryPercentagePref) {
+            return true;
+        } else if (preference == mColorBatteryPercentagePref) {
             ColorPickerDialog cp = new ColorPickerDialog(this,
                     new ColorChangedListener(this, Settings.System.COLOR_BATTERY_PERCENTAGE),
                     Settings.System.getInt(getContentResolver(),
                             Settings.System.COLOR_BATTERY_PERCENTAGE,
                             getResources().getColor(com.android.internal.R.color.white)));
             cp.show();
-        }
-
-        if (preference == mColorNotificationTickerTextPref) {
+            return true;
+        } else if (preference == mColorNotificationTickerTextPref) {
             ColorPickerDialog cp = new ColorPickerDialog(this,
                     new ColorChangedListener(this, Settings.System.COLOR_NOTIFICATION_TICKER_TEXT),
                     Settings.System.getInt(getContentResolver(),
                             Settings.System.COLOR_NOTIFICATION_TICKER_TEXT,
                             getResources().getColor(com.android.internal.R.color.black)));
             cp.show();
-        }
-
-        if (preference == mColorNotificationNonePref) {
+            return true;
+        } else if (preference == mColorNotificationNonePref) {
             ColorPickerDialog cp = new ColorPickerDialog(this,
                     new ColorChangedListener(this, Settings.System.COLOR_NOTIFICATION_NONE),
                     Settings.System.getInt(getContentResolver(),
                             Settings.System.COLOR_NOTIFICATION_NONE,
                             getResources().getColor(com.android.internal.R.color.white)));
             cp.show();
-        }
-
-        if (preference == mColorNotificationLatestPref) {
+            return true;
+        } else if (preference == mColorNotificationLatestPref) {
             ColorPickerDialog cp = new ColorPickerDialog(this,
                     new ColorChangedListener(this, Settings.System.COLOR_NOTIFICATION_LATEST),
                     Settings.System.getInt(getContentResolver(),
                             Settings.System.COLOR_NOTIFICATION_LATEST,
                             getResources().getColor(com.android.internal.R.color.white)));
             cp.show();
-        }
-
-        if (preference == mColorNotificationOngoingPref) {
+            return true;
+        } else if (preference == mColorNotificationOngoingPref) {
             ColorPickerDialog cp = new ColorPickerDialog(this,
                     new ColorChangedListener(this, Settings.System.COLOR_NOTIFICATION_ONGOING),
                     Settings.System.getInt(getContentResolver(),
                             Settings.System.COLOR_NOTIFICATION_ONGOING,
                             getResources().getColor(com.android.internal.R.color.white)));
             cp.show();
-        }
-
-        if (preference == mColorNotificationClearButtonPref) {
+            return true;
+        } else if (preference == mColorNotificationClearButtonPref) {
             ColorPickerDialog cp = new ColorPickerDialog(this,
                     new ColorChangedListener(this, Settings.System.COLOR_NOTIFICATION_CLEAR_BUTTON),
                     Settings.System.getInt(getContentResolver(),
                             Settings.System.COLOR_NOTIFICATION_CLEAR_BUTTON,
                             getResources().getColor(com.android.internal.R.color.black)));
             cp.show();
-        }
-
-        if (preference == mColorNotificationItemTitlePref) {
+            return true;
+        } else if (preference == mColorNotificationItemTitlePref) {
             ColorPickerDialog cp = new ColorPickerDialog(this,
                     new ColorChangedListener(this, Settings.System.COLOR_NOTIFICATION_ITEM_TITLE),
                     Settings.System.getInt(getContentResolver(),
                             Settings.System.COLOR_NOTIFICATION_ITEM_TITLE,
                             getResources().getColor(com.android.internal.R.color.black)));
             cp.show();
-        }
-
-        if (preference == mColorNotificationItemTextPref) {
+            return true;
+        } else if (preference == mColorNotificationItemTextPref) {
             ColorPickerDialog cp = new ColorPickerDialog(this,
                     new ColorChangedListener(this, Settings.System.COLOR_NOTIFICATION_ITEM_TEXT),
                     Settings.System.getInt(getContentResolver(),
                             Settings.System.COLOR_NOTIFICATION_ITEM_TEXT,
                             getResources().getColor(com.android.internal.R.color.black)));
             cp.show();
-        }
-
-        if (preference == mColorNotificationItemProgressTextPref) {
+            return true;
+        } else if (preference == mColorNotificationItemProgressTextPref) {
             ColorPickerDialog cp = new ColorPickerDialog(this,
                     new ColorChangedListener(this, Settings.System.COLOR_NOTIFICATION_ITEM_PROGRESS_TEXT),
                     Settings.System.getInt(getContentResolver(),
                             Settings.System.COLOR_NOTIFICATION_ITEM_PROGRESS_TEXT,
                             getResources().getColor(com.android.internal.R.color.black)));
             cp.show();
-        }
-
-        if (preference == mColorNotificationItemTimePref) {
+            return true;
+        } else if (preference == mColorNotificationItemTimePref) {
             ColorPickerDialog cp = new ColorPickerDialog(this,
                     new ColorChangedListener(this, Settings.System.COLOR_NOTIFICATION_ITEM_TIME),
                     Settings.System.getInt(getContentResolver(),
                             Settings.System.COLOR_NOTIFICATION_ITEM_TIME,
                             getResources().getColor(com.android.internal.R.color.black)));
             cp.show();
-        }
-
-        if (preference == mDisplayStatusBarClockPref) {
+            return true;
+        } else if (preference == mDisplayStatusBarClockPref) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.DISPLAY_STATUS_BAR_CLOCK,
                     mDisplayStatusBarClockPref.isChecked() ? 1 : 0);
-        }
-
-        if (preference == mDisplayBatteryPercentagePref) {
+            return true;
+        } else if (preference == mDisplayBatteryPercentagePref) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.DISPLAY_BATTERY_PERCENTAGE,
                     mDisplayBatteryPercentagePref.isChecked() ? 1 : 0);
+            return true;
         }
 
-        return true;
+        return false;
     }
 }

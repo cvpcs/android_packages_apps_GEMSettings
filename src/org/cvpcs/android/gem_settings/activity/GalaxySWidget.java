@@ -60,17 +60,17 @@ public class GalaxySWidget extends PreferenceActivity {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.DISPLAY_GALAXY_S_WIDGET,
                     mWidgetDisplayPref.isChecked() ? 1 : 0);
-        }
-
-        if(preference == mWidgetIndicatorColorPref) {
+            return true;
+        } else if(preference == mWidgetIndicatorColorPref) {
             ColorPickerDialog cp = new ColorPickerDialog(this,
                     new ColorChangedListener(this, Settings.System.GALAXY_S_WIDGET_COLOR),
                     Settings.System.getInt(getContentResolver(),
                             Settings.System.GALAXY_S_WIDGET_COLOR,
                             getResources().getColor(R.color.galaxy_s_widget_indicator_default)));
             cp.show();
+            return true;
         }
 
-        return true;
+        return false;
     }
 }

@@ -89,27 +89,25 @@ public class Extras extends PreferenceActivity
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.DISPLAY_ADB_USB_DEBUGGING_NOTIFICATION,
                     mNotifADBPref.isChecked() ? 1 : 0);
-        }
-
-        if(preference == mNotifLEDPref) {
+            return true;
+        } else if(preference == mNotifLEDPref) {
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.DISPLAY_NOTIFICATION_LED_SCREEN_ON,
                     mNotifLEDPref.isChecked() ? 1 : 0);
-        }
-
-        if(preference == mKillAppPref) {
+            return true;
+        } else if(preference == mKillAppPref) {
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.KILL_APP_LONGPRESS_BACK,
                     mKillAppPref.isChecked() ? 1 : 0);
-        }
-
-        if(preference == mGeneralUseRotaryLockPref) {
+            return true;
+        } else if(preference == mGeneralUseRotaryLockPref) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.USE_ROTARY_LOCKSCREEN,
                     mGeneralUseRotaryLockPref.isChecked() ? 1 : 0);
+            return true;
         }
 
-        return true;
+        return false;
     }
 
 

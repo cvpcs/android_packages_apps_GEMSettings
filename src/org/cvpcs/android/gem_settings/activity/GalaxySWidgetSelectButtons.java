@@ -115,8 +115,9 @@ public class GalaxySWidgetSelectButtons extends PreferenceActivity {
                     Settings.System.GALAXY_S_WIDGET_BUTTONS,
                     GalaxySWidgetUtil.mergeInNewButtonString(
                             buttons, GalaxySWidgetUtil.getButtonStringFromList(buttonList)));
+            return true;
         }
 
-        return true;
+        return false;
     }
 }
