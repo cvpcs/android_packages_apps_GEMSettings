@@ -19,4 +19,5 @@
 -->
 <resources>
     <color name="dragndrop_background">#e0103010</color>
+    <color name="galaxy_s_widget_indicator_default">#ff99cc33</color>
 </resources>

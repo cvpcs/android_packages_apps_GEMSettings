@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/*
+ * Copyright 2008, The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <PreferenceCategory android:title="Galaxy S Power Widget">
+
+    <CheckBoxPreference
+        android:key="galaxy_s_widget_display"
+        android:title="@string/title_galaxy_s_widget_display"
+        android:summaryOn="@string/summary_on_galaxy_s_widget_display"
+        android:summaryOff="@string/summary_off_galaxy_s_widget_display" />
+
+    <Preference android:key="galaxy_s_widget_indicator_color"
+        android:title="@string/title_galaxy_s_widget_indicator_color"
+        android:summary="@string/summary_galaxy_s_widget_indicator_color"
+        android:dependency="galaxy_s_widget_display"
+        android:defaultValue="@color/galaxy_s_widget_indicator_default" />
+
+    <PreferenceScreen android:key="galaxy_s_widget_select_buttons"
+        android:title="@string/title_galaxy_s_widget_select_buttons"
+        android:summary="@string/summary_galaxy_s_widget_select_buttons"
+        android:dependency="galaxy_s_widget_display">
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="org.cvpcs.android.gem_settings"
+            android:targetClass="org.cvpcs.android.gem_settings.activity.GalaxySWidgetSelectButtons" />
+    </PreferenceScreen>
+
+    <PreferenceScreen android:key="galaxy_s_widget_order_buttons"
+        android:title="@string/title_galaxy_s_widget_order_buttons"
+        android:summary="@string/summary_galaxy_s_widget_order_buttons"
+        android:dependency="galaxy_s_widget_display">
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="org.cvpcs.android.gem_settings"
+            android:targetClass="org.cvpcs.android.gem_settings.activity.GalaxySWidgetOrderButtons" />
+    </PreferenceScreen>
+
+  </PreferenceCategory>
+  
+</PreferenceScreen>

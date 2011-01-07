@@ -61,6 +61,21 @@
 		<action android:name="android.intent.action.MAIN" />
 	    </intent-filter>
 	</activity>
+	<activity android:name=".activity.GalaxySWidget">
+	    <intent-filter>
+		<action android:name="android.intent.action.MAIN" />
+	    </intent-filter>
+	</activity>
+	<activity android:name=".activity.GalaxySWidgetSelectButtons">
+	    <intent-filter>
+		<action android:name="android.intent.action.MAIN" />
+	    </intent-filter>
+	</activity>
+	<activity android:name=".activity.GalaxySWidgetOrderButtons">
+	    <intent-filter>
+		<action android:name="android.intent.action.MAIN" />
+	    </intent-filter>
+	</activity>
 
     </application>
 </manifest>

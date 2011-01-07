@@ -82,5 +82,15 @@
             android:targetPackage="org.cvpcs.android.gemnotifications"
             android:targetClass="org.cvpcs.android.gemnotifications.activity.GEMNotifications" />
     </org.cvpcs.android.gem_settings.widget.IconPreferenceScreen>
+
+    <org.cvpcs.android.gem_settings.widget.IconPreferenceScreen android:key="galaxy_s_widget"
+	gemsettings:icon="@drawable/ic_gem"
+        android:title="@string/title_galaxy_s_widget"
+	android:summary="@string/summary_galaxy_s_widget">
+        <intent
+            android:action="android.intent.action.MAIN"
+	    android:targetPackage="org.cvpcs.android.gem_settings"
+	    android:targetClass="org.cvpcs.android.gem_settings.activity.GalaxySWidget"  />
+    </org.cvpcs.android.gem_settings.widget.IconPreferenceScreen>
     </PreferenceCategory>
 </PreferenceScreen>

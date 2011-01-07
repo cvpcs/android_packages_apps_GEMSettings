@@ -144,4 +144,24 @@
     <!-- Settings for push update notifications -->
     <string name="title_gemnotifications">GEM Notifications</string>
     <string name="summary_gemnotifications">Register for update notifications</string>
+
+    <!-- Settings for the galaxy s power widget -->
+    <string name="title_galaxy_s_widget">Galaxy S Power Widget</string>
+    <string name="summary_galaxy_s_widget">Manage Galaxy S notification power widget</string>
+
+        <string name="title_galaxy_s_widget_display">Display Galaxy S Widget</string>
+        <string name="summary_on_galaxy_s_widget_display">The widget will be displayed in the notification pulldown</string>
+        <string name="summary_off_galaxy_s_widget_display">The widget will not be displayed in the notification pulldown</string>
+
+        <string name="title_galaxy_s_widget_indicator_color">Indicator Color</string>
+        <string name="summary_galaxy_s_widget_indicator_color">Color of the indicator on the buttons</string>
+
+        <string name="title_galaxy_s_widget_select_buttons">Select Buttons</string>
+        <string name="summary_galaxy_s_widget_select_buttons">Select which buttons should be displayed/used</string>
+
+            <string name="summary_on_galaxy_s_widget_select_button_format">The %s button will be displayed</string>
+            <string name="summary_off_galaxy_s_widget_select_button_format">The %s button will not be displayed</string>
+
+        <string name="title_galaxy_s_widget_order_buttons">Order Buttons</string>
+        <string name="summary_galaxy_s_widget_order_buttons">Select the order of the buttons in the widget</string>
 </resources>
