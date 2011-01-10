@@ -130,7 +130,7 @@ public class Performance extends PreferenceActivity
         int newValue = Integer.valueOf((String)objValue);
         if(preference == mCPUFreqGovernorPref) {
             SystemProperties.set(CPUFREQ_GOVERNOR_PROPERTY,
-                    newValue);
+                    Integer.toString(newValue));
             return true;
         }
 
