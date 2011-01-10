@@ -79,7 +79,7 @@ public class TouchInterceptor extends ListView {
                     ViewGroup item = (ViewGroup) getChildAt(itemnum - getFirstVisiblePosition());
                     mDragPoint = y - item.getTop();
                     mCoordOffset = ((int)ev.getRawY()) - y;
-                    View dragger = item.findViewById(R.id.icon);
+                    View dragger = item.findViewById(R.id.grabber);
                     Rect r = mTempRect;
                     dragger.getDrawingRect(r);
                     // The dragger icon itself is quite small, so pretend the touch area is bigger

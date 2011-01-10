@@ -25,8 +25,6 @@ import android.preference.PreferenceCategory;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
-import android.provider.Settings;
-import android.provider.Settings.SettingNotFoundException;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -51,15 +49,13 @@ public class GalaxySWidgetSelectButtons extends PreferenceActivity {
 
         // empty our preference category and set it to order as added
         prefSet.removeAll();
-        prefSet.setOrderingAsAdded(true);
+        prefSet.setOrderingAsAdded(false);
 
         // emtpy our checkbox map
         mCheckBoxPrefs.clear();
 
         // get our list of buttons
-        String buttons = Settings.System.getString(getContentResolver(), Settings.System.GALAXY_S_WIDGET_BUTTONS);
-        if(buttons == null) { buttons = GalaxySWidgetUtil.BUTTONS_DEFAULT; }
-        ArrayList<String> buttonList = GalaxySWidgetUtil.getButtonListFromString(buttons);
+        ArrayList<String> buttonList = GalaxySWidgetUtil.getButtonListFromString(GalaxySWidgetUtil.getCurrentButtons(this));
 
         // fill that checkbox map!
         for(GalaxySWidgetUtil.ButtonInfo button : GalaxySWidgetUtil.BUTTONS.values()) {
@@ -105,15 +101,9 @@ public class GalaxySWidgetSelectButtons extends PreferenceActivity {
         }
 
         if(buttonWasModified) {
-            // get our list of buttons
-            String buttons = Settings.System.getString(getContentResolver(), Settings.System.GALAXY_S_WIDGET_BUTTONS);
-            if(buttons == null) { buttons = GalaxySWidgetUtil.BUTTONS_DEFAULT; }
-
             // now we do some wizardry and reset the button list
-            Settings.System.putString(getContentResolver(),
-                    Settings.System.GALAXY_S_WIDGET_BUTTONS,
-                    GalaxySWidgetUtil.mergeInNewButtonString(
-                            buttons, GalaxySWidgetUtil.getButtonStringFromList(buttonList)));
+            GalaxySWidgetUtil.saveCurrentButtons(this, GalaxySWidgetUtil.mergeInNewButtonString(
+                    GalaxySWidgetUtil.getCurrentButtons(this), GalaxySWidgetUtil.getButtonStringFromList(buttonList)));
             return true;
         }
 
