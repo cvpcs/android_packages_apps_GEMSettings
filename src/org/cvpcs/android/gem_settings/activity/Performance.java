@@ -127,22 +127,23 @@ public class Performance extends PreferenceActivity
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
+        int newValue = Integer.valueOf((String)objValue);
         if(preference == mCPUFreqGovernorPref) {
             SystemProperties.set(CPUFREQ_GOVERNOR_PROPERTY,
-                    mCPUFreqGovernorPref.getValue());
+                    newValue);
             return true;
         }
 
         if(preference == mCPUFreqMinimumPref) {
             SystemProperties.set(CPUFREQ_MINIMUM_PROPERTY,
-                    Integer.toString(mCPUFreqMinimumPref.getValue()));
+                    Integer.toString(newValue));
             checkCPUSpeeds();
             return true;
         }
 
         if(preference == mCPUFreqMaximumPref) {
             SystemProperties.set(CPUFREQ_MAXIMUM_PROPERTY,
-                    Integer.toString(mCPUFreqMaximumPref.getValue()));
+                    Integer.toString(newValue));
             checkCPUSpeeds();
             return true;
         }

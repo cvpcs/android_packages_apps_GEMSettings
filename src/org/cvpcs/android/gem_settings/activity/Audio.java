@@ -74,10 +74,11 @@ public class Audio extends PreferenceActivity
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
+        int newValue = Integer.valueOf((String)objValue);
         if(preference == mGeneralLockscreenMusicControlsPref) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.DISPLAY_LOCKSCREEN_MUSIC_CONTROLS,
-                    Integer.parseInt(mGeneralLockscreenMusicControlsPref.getValue()));
+                    newValue);
             return true;
         }
 
