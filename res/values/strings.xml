@@ -77,7 +77,7 @@
 
     <!-- Section devoted to user interface tweaking -->
     <string name="title_ui_tweaks">User interface tweaks</string>
-    <string name="summary_ui_tweaks">Requires reboot</string>
+    <string name="summary_ui_tweaks">Now with 100% less reboots!</string>
 
         <string name="title_ui_tweaks_status_bar">Status Bar</string>
 

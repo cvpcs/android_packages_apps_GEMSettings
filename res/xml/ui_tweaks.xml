@@ -104,4 +104,13 @@
 
     </PreferenceCategory>
   
+    
+    <PreferenceScreen android:key="galaxy_s_widget"
+        android:title="@string/title_galaxy_s_widget"
+	android:summary="@string/summary_galaxy_s_widget">
+        <intent
+            android:action="android.intent.action.MAIN"
+	    android:targetPackage="org.cvpcs.android.gem_settings"
+	    android:targetClass="org.cvpcs.android.gem_settings.activity.GalaxySWidget"  />
+    </PreferenceScreen>
 </PreferenceScreen>
