@@ -52,8 +52,8 @@ public class GalaxySWidgetUtil {
                 BUTTON_LOCKSCREEN, "Lockscreen", R.drawable.stat_lock_screen_on));
         BUTTONS.put(BUTTON_MOBILEDATA, new GalaxySWidgetUtil.ButtonInfo(
                 BUTTON_MOBILEDATA, "Mobile data", R.drawable.stat_data_on));
-        BUTTONS.put(BUTTON_NETWORKMODE, new GalaxySWidgetUtil.ButtonInfo(
-                BUTTON_NETWORKMODE, "Network mode", R.drawable.stat_2g3g_on));
+/*        BUTTONS.put(BUTTON_NETWORKMODE, new GalaxySWidgetUtil.ButtonInfo(
+                BUTTON_NETWORKMODE, "Network mode", R.drawable.stat_2g3g_on));*/
         BUTTONS.put(BUTTON_SCREENTIMEOUT, new GalaxySWidgetUtil.ButtonInfo(
                 BUTTON_SCREENTIMEOUT, "Screen timeout", R.drawable.stat_screen_timeout_on));
         BUTTONS.put(BUTTON_SLEEP, new GalaxySWidgetUtil.ButtonInfo(
@@ -64,8 +64,8 @@ public class GalaxySWidgetUtil {
                 BUTTON_SYNC, "Sync", R.drawable.stat_sync_on));
         BUTTONS.put(BUTTON_WIFI, new GalaxySWidgetUtil.ButtonInfo(
                 BUTTON_WIFI, "Wireless", R.drawable.stat_wifi_on));
-        BUTTONS.put(BUTTON_WIFIAP, new GalaxySWidgetUtil.ButtonInfo(
-                BUTTON_WIFIAP, "Wireless access-point", R.drawable.stat_wifi_ap_on));
+/*        BUTTONS.put(BUTTON_WIFIAP, new GalaxySWidgetUtil.ButtonInfo(
+                BUTTON_WIFIAP, "Wireless access-point", R.drawable.stat_wifi_ap_on));*/
         BUTTONS.put(BUTTON_MEDIA_PREVIOUS, new GalaxySWidgetUtil.ButtonInfo(
                 BUTTON_MEDIA_PREVIOUS, "Media: skip to previous", R.drawable.stat_media_previous));
         BUTTONS.put(BUTTON_MEDIA_PLAY_PAUSE, new GalaxySWidgetUtil.ButtonInfo(
