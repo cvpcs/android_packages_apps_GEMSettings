@@ -112,11 +112,10 @@ public class Extras extends PreferenceActivity
 
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        int newValue = Integer.valueOf((String)objValue);
         if(preference == mAutoBrightMinLevelPref) {
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.AUTO_BRIGHTNESS_MINIMUM_BACKLIGHT_LEVEL,
-                    newValue);
+                    (Integer)objValue);
             return true;
         }
 
